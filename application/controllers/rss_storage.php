@@ -42,5 +42,3 @@
 
 		$rssModel->set_item($title, $date, $description, $permalink, $categories);
 	}
-
-	unset($rssModel);
