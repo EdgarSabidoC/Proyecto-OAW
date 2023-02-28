@@ -1,0 +1,12 @@
+header {
+  display: table;
+  width: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/Img/header_bg.jpg');
+  background-size: cover;
+  height: 350px;
+  color: white;
+}
+
+.form-control-height{
+    height: 5rem !important; 
+}
