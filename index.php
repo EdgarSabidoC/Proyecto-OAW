@@ -62,8 +62,8 @@
                         <div class="card-header">Buscar</div>
                         <div class="card-body">
                             <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Busca noticias y más..." aria-label="Busca noticias y más..." aria-describedby="button-search" />
-                                <button class="btn btn-primary" id="button-search" type="button">¡Listo!</button>
+                                <input id="searchBox" class="form-control" type="text" placeholder="Busca noticias y más..." aria-label="Busca noticias y más..." aria-describedby="button-search" />
+                                <button class="btn btn-primary" id="button-search" type="button" onclick="loadPhp('controllers/rss_search.php')">¡Listo!</button>
                             </div>
                         </div>
                     </div>
@@ -80,8 +80,8 @@
                                     </div>
                                     <!-- Submit Button-->
                                     <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                                        <button class="btn btn-primary" id="button-erase" type="button">Borrar</button>
-                                        <button class="btn btn-primary" id="button-save" type="button" onclick="loadPhp('controllers/rss_storage.php')">Guardar</button>
+                                        <button class="btn btn-primary" id="button-delete" type="button" onclick="loadPhp('controllers/rss_delete.php')">Borrar</button>
+                                        <button class="btn btn-primary" id="button-upload" type="button" onclick="loadPhp('controllers/rss_upload.php')">Guardar</button>
                                     </div>
                                 </form>
                             </div>
@@ -160,7 +160,18 @@
 			};
 
 			// Se envía la petición al servidor:
-			xmlhttp.send(`feedurl=${document.getElementById('textArea').value}`);
+            if(document.getElementById('searchBox').value){
+                xmlhttp.send(`searchtext=${document.getElementById('searchBox').value}`);
+            }
+            if(document.getElementById('textArea').value){
+                xmlhttp.send(`feedurl=${document.getElementById('textArea').value}`);   
+            }
 		};
+	</script>
+    <!-- Script que sirve para evitar que el formulario se reenvíe al cargar la página -->
+	<script type='text/javascript'>
+		if (window.history.replaceState) {
+		window.history.replaceState(null, null, window.location.href);
+		}
 	</script>
 </html>
