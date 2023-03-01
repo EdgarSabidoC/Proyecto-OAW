@@ -1,6 +1,6 @@
 <?php
 	$i = 0;
-	// Aquí se accesa a los items de la base de datos para imprimirlos en pantalla.
+	
 	foreach ($items as $item) {
 		if($i == 0){
 			echo "<div class='col-lg-6'>";
@@ -37,3 +37,4 @@
 		}
 	}
 	unset($arr_ctgs);
+	

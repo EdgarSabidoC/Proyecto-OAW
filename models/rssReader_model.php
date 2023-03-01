@@ -29,6 +29,24 @@
 			return $this->items;
 	}
 
+		public function search_items_by_categories($text, $selectOption) {
+		$sql = "SELECT * FROM feed WHERE (title LIKE '%".$text."%' OR description LIKE '%".$text."%') " .$selectOption .";";
+		$query = $this->db->query($sql);
+		while ($rows=$query->fetch_assoc()) {
+			$this->items[]=$rows;
+		}
+		return $this->items;
+    }	
+
+		public function getCategories($text, $selectOption) {
+		$sql = "SELECT * FROM feed WHERE (title LIKE '%".$text."%' OR description LIKE '%".$text."%') " .$selectOption .";";
+		$query = $this->db->query($sql);
+		while ($rows=$query->fetch_assoc()) {
+			$this->items[]=$rows;
+		}
+		return $this->items;
+    }
+
 		// Almacena en la BD los items:
 		public function set_item($title, $date, $description, $permalink, $categories) {
 			$sql = "INSERT INTO feed (title, date, description, permalink, categories)

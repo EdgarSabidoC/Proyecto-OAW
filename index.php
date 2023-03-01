@@ -91,13 +91,14 @@
                     <div class="card mb-4">
                         <div class="card-header">Ordenar Por:</div>
                         <div class="card-body">
-                            <select class="form-select" aria-label="Default select">
-                                <option value="1">Fecha</option>
+                            <select id="formSelect" class="form-select" onchange="searchByCategories(); getCategories();" aria-label="Default select">
+                                <option value="1">Mas reciente</option>
                                 <option value="2">Título</option>
                                 <option value="3">Descripción</option>
+                                <option value="4">Menos reciente</option>
                             </select>
                             <h6 class="m-3">Categorias:</h6>
-                            <div class="row">
+                            <div class="row" id="link-categories">
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
                                         <li><a href="#!">Web Design</a></li>
@@ -167,6 +168,70 @@
                 xmlhttp.send(`feedurl=${document.getElementById('textArea').value}`);   
             }
 		};
+
+        function searchByCategories() {
+            var inputTextSearch = document.getElementById("searchBox").value;
+            var selectedItem = document.getElementById("formSelect").value;
+            const xmlhttp = new XMLHttpRequest();
+            
+            xmlhttp.onreadystatechange = () => {
+                if (
+                    xmlhttp.readyState === XMLHttpRequest.DONE &&
+                    xmlhttp.status === 200
+                ) {
+                    // Se valida que se haya obtenido una respuesta y el código HTTP sea 200 'OK':
+                    document.getElementById("container").innerHTML = xmlhttp.responseText;
+                }
+            };
+
+            // Se ejecuta cuando se recibe la petición hecha al servidor:
+            xmlhttp.onload = () => {
+                if (xmlhttp.status >= 400) {
+                    console.error(
+                        `Error ${xmlhttp.status}`
+                    );
+                    document.getElementById(
+                        "container"
+                    ).innerHTML = `<h1 align="center">ERROR ${xmlhttp.status}</h1>`;
+                }
+            };
+
+            xmlhttp.open("GET", "controllers/rss_categories.php?searchBox=" + inputTextSearch + "&formSelect=" + selectedItem, true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send();
+        }
+
+        function getCategories() {
+            var inputTextSearch = document.getElementById("searchBox").value;
+            var selectedItem = document.getElementById("formSelect").value;
+            const xmlhttp = new XMLHttpRequest();
+            
+            xmlhttp.onreadystatechange = () => {
+                if (
+                    xmlhttp.readyState === XMLHttpRequest.DONE &&
+                    xmlhttp.status === 200
+                ) {
+                    // Se valida que se haya obtenido una respuesta y el código HTTP sea 200 'OK':
+                    document.getElementById("link-categories").innerHTML = xmlhttp.responseText;
+                }
+            };
+
+            // Se ejecuta cuando se recibe la petición hecha al servidor:
+            xmlhttp.onload = () => {
+                if (xmlhttp.status >= 400) {
+                    console.error(
+                        `Error ${xmlhttp.status}`
+                    );
+                    document.getElementById(
+                        "link-categories"
+                    ).innerHTML = `<h1 align="center">ERROR ${xmlhttp.status}</h1>`;
+                }
+            };
+
+            xmlhttp.open("GET", "controllers/rss_get_categories.php?searchBox=" + inputTextSearch + "&formSelect=" + selectedItem, true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send();
+        }
 	</script>
     <!-- Script que sirve para evitar que el formulario se reenvíe al cargar la página -->
 	<script type='text/javascript'>
