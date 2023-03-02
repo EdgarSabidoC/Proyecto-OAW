@@ -11,7 +11,7 @@
 
 		// Obtiene todas las noticias/artículos de la DB:
 		public function get_items() {
-				$sql = "SELECT * FROM feed;";
+				$sql = "SELECT * FROM feed ORDER BY date DESC;";
 				$query = $this->db->query($sql);
 				while ($rows=$query->fetch_assoc()) {
 					$this->items[]=$rows;
