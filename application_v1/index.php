@@ -81,7 +81,7 @@
 							</p>
 							<div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
 								<a class="btn btn-primary btn-lg px-4 me-sm-3" onclick="loadPhp('controllers/rss_reader.php')">Mostrar</a>
-								<a class="btn btn-outline-light btn-lg px-4" href="">Actualizar</a>
+								<a class="btn btn-outline-light btn-lg px-4" onclick="loadPhp('controllers/rss_update.php')">Actualizar</a>
 							</div>
 						</div>
 					</div>
@@ -128,4 +128,7 @@
 			<div class="container"><p class="m-0 text-center text-white">Optimización de Aplicaciones Web 2023.</p></div>
 		</footer>
 	</body>
+	<script>
+		loadPhp('controllers/start.php');
+	</script>
 </html>
