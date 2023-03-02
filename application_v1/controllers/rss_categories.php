@@ -3,6 +3,9 @@
 if ($_GET['searchBox'] !== '' && $_GET['formSelect'] !== '') {
 	$text = $_GET['searchBox'];
 	$selectOption = $_GET['formSelect'];
+} elseif($_GET['formSelect'] !== ''){
+	$text = '';
+	$selectOption = $_GET['formSelect'];
 } else {
 	die;
 }
