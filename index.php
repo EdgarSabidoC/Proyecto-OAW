@@ -7,9 +7,10 @@
         <meta name="author" content="" />
         <title>Lector de noticias RSS - Inicio</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="application/assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="application/css/styles.css" rel="stylesheet" />
+        <link href="application/css/styles_front.css" rel="stylesheet" />
     </head>
     <body>
         <!-- Responsive navbar-->
@@ -20,7 +21,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.php">Acerca de</a></li>
+                        <li class="nav-item"><a class="nav-link" href="application/views/about.php">Acerca de</a></li>
                     </ul>
                 </div>
             </div>
@@ -38,8 +39,8 @@
                                 Lector Web de RSS feeds personalizable. Recopila la información de los sitios web en un entorno virtual organizado para que puedas seguir las noticias de tu blog o canal de noticias favorito.
                             </p>
                             <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                                <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features">Actualizar</a>
-                                <a class="btn btn-outline-light btn-lg px-4" href="about.php">Acerca de</a>
+                                <a class="btn btn-primary btn-lg px-4 me-sm-3" onclick="loadPhp('application/controllers/rss_reader.php')">Mostrar</a>
+                                <a class="btn btn-outline-light btn-lg px-4" href="">Actualizar</a>
                             </div>
                         </div>
                     </div>
@@ -51,64 +52,8 @@
             <div class="row">
                 <!-- Blog entries-->
                 <div class="col-lg-8">
-                    <!-- Featured blog post-->
-                    <div class="card mb-4">
-                        <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                        <div class="card-body">
-                            <div class="small text-muted">2023-02-27</div>
-                            <h2 class="card-title">Italy migrant boat shipwreck: Nearly 60 killed off Calabria coast</h2>
-                            <div class="badge bg-primary bg-gradient rounded-pill mb-2">Media</div>
-                            <p class="card-text">Twelve children, including a baby, were among those who died after their boat broke apart in stormy seas.</p>
-                            <a class="btn btn-primary" href="#!">Read more →</a>
-                        </div>
-                    </div>
                     <!-- Nested row for non-featured blog posts-->
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <!-- Blog post-->
-                            <div class="card mb-4">
-                                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                                <div class="card-body">
-                                    <div class="small text-muted">January 1, 2022</div>
-                                    <h2 class="card-title h4">Post Title</h2>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                                    <a class="btn btn-primary" href="#!">Read more →</a>
-                                </div>
-                            </div>
-                            <!-- Blog post-->
-                            <div class="card mb-4">
-                                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                                <div class="card-body">
-                                    <div class="small text-muted">January 1, 2022</div>
-                                    <h2 class="card-title h4">Post Title</h2>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                                    <a class="btn btn-primary" href="#!">Read more →</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <!-- Blog post-->
-                            <div class="card mb-4">
-                                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                                <div class="card-body">
-                                    <div class="small text-muted">January 1, 2022</div>
-                                    <h2 class="card-title h4">Post Title</h2>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                                    <a class="btn btn-primary" href="#!">Read more →</a>
-                                </div>
-                            </div>
-                            <!-- Blog post-->
-                            <div class="card mb-4">
-                                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                                <div class="card-body">
-                                    <div class="small text-muted">January 1, 2022</div>
-                                    <h2 class="card-title h4">Post Title</h2>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                                    <a class="btn btn-primary" href="#!">Read more →</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="container" class="container row"></div>
                 </div>
                 <!-- Side widgets-->
                 <div class="col-lg-4">
@@ -117,8 +62,28 @@
                         <div class="card-header">Buscar</div>
                         <div class="card-body">
                             <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Busca noticias y más..." aria-label="Busca noticias y más..." aria-describedby="button-search" />
-                                <button class="btn btn-primary" id="button-search" type="button">¡Listo!</button>
+                                <input id="searchBox" class="form-control" type="text" placeholder="Busca noticias y más..." aria-label="Busca noticias y más..." aria-describedby="button-search" />
+                                <button class="btn btn-primary" id="button-search" type="button" onclick="loadPhp('application/controllers/rss_search.php')">¡Listo!</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Side widget-->
+                    <div class="card mb-4">
+                        <div class="card-header">Añadir Feed</div>
+                        <div class="card-body">Ingresa la URL del Feed que deseas añadir.
+                            <div class="input-group align-items-center justify-content-center">
+                                <form class="col-12" method='POST'>
+                                    <!-- Message input-->
+                                    <div class="form-floating m-3">
+                                        <textarea id="textArea" name="textArea" class="form-control form-control-height" type="text" placeholder="Ingresar Sitio..."></textarea>
+                                        <label for="Ingresar Sitio">Ingresar Sitios</label>
+                                    </div>
+                                    <!-- Submit Button-->
+                                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                                        <button class="btn btn-primary" id="button-delete" type="button" onclick="loadPhp('application/controllers/rss_delete.php')">Borrar</button>
+                                        <button class="btn btn-primary" id="button-upload" type="button" onclick="loadPhp('application/controllers/rss_upload.php')">Guardar</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -150,26 +115,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Side widget-->
-                    <div class="card mb-4">
-                        <div class="card-header">Añadir Feed</div>
-                        <div class="card-body">Ingresa la URL del Feed que deseas añadir.
-                            <div class="input-group align-items-center justify-content-center">
-                                <form id='buscador' class="col-12" method='POST'>
-                                    <!-- Message input-->
-                                    <div class="form-floating m-3">
-                                        <textarea id="textArea" name="textArea" class="form-control form-control-height" type="text" placeholder="Ingresar Sitio..."></textarea>
-                                        <label for="Ingresar Sitio">Ingresar Sitios</label>
-                                    </div>
-                                    <!-- Submit Button-->
-                                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                                        <button class="btn btn-primary" id="button-erase" type="button">Borrar</button>
-                                        <button class="btn btn-primary" id="button-save" type="button">Guardar</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -178,4 +123,55 @@
             <div class="container"><p class="m-0 text-center text-white">Optimización de Aplicaciones Web 2023.</p></div>
         </footer>
     </body>
+    <script type="text/javascript">
+		const loadPhp = (url) => {
+		    // Se instancia un objeto del tipo XMLHttpRequest:
+			const xmlhttp = new XMLHttpRequest();
+
+			// Parámetros de la petición:
+			const method = "POST";
+			const async = true;
+
+			// Se inicializa la petición al servidor:
+			xmlhttp.open(method, url, async);
+			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+			// Se ejecuta cuando la propiedad readyState se modifica:
+			xmlhttp.onreadystatechange = () => {
+				if (
+					xmlhttp.readyState === XMLHttpRequest.DONE &&
+					xmlhttp.status === 200
+				) {
+					// Se valida que se haya obtenido una respuesta y el código HTTP sea 200 'OK':
+					document.getElementById("container").innerHTML = xmlhttp.responseText;
+				}
+			};
+
+			// Se ejecuta cuando se recibe la petición hecha al servidor:
+			xmlhttp.onload = () => {
+				if (xmlhttp.status >= 400) {
+					console.error(
+						`Error ${xmlhttp.status}`
+					);
+					document.getElementById(
+						"container"
+					).innerHTML = `<h1 align="center">ERROR ${xmlhttp.status}</h1>`;
+				}
+			};
+
+			// Se envía la petición al servidor:
+            if(document.getElementById('searchBox').value){
+                xmlhttp.send(`searchtext=${document.getElementById('searchBox').value}`);
+            }
+            if(document.getElementById('textArea').value){
+                xmlhttp.send(`feedurl=${document.getElementById('textArea').value}`);   
+            }
+		};
+	</script>
+    <!-- Script que sirve para evitar que el formulario se reenvíe al cargar la página -->
+	<script type='text/javascript'>
+		if (window.history.replaceState) {
+		window.history.replaceState(null, null, window.location.href);
+		}
+	</script>
 </html>
