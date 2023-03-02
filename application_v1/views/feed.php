@@ -1,32 +1,72 @@
 <!DOCTYPE html>
 <html lang="es-MX">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Lector de noticias RSS - Feeds</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="../css/styles.css" rel="stylesheet" />
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<meta name="description" content="" />
+		<meta name="author" content="" />
+		<title>Lector de noticias RSS - Feeds</title>
+		<!-- Favicon-->
+		<link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+		<!-- Core theme CSS (includes Bootstrap)-->
+		<link href="../css/styles.css" rel="stylesheet" />
 		<link href="../css/styles_front.css" rel="stylesheet" />
-    </head>
-    <body>
-        <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="../../index.php">Lector de noticias RSS</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="../index.php">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="feed.php">Añadir Feeds</a></li>
-						<li class="nav-item"><a class="nav-link" href="about.php">Acerca de</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+		<script type="text/javascript">
+			const loadPhp = (url) => {
+				// Se instancia un objeto del tipo XMLHttpRequest:
+				const xmlhttp = new XMLHttpRequest();
+
+				// Parámetros de la petición:
+				const method = "POST";
+				const async = true;
+
+				// Se inicializa la petición al servidor:
+				xmlhttp.open(method, url, async);
+				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+				// Se ejecuta cuando la propiedad readyState se modifica:
+				xmlhttp.onreadystatechange = () => {
+					if (
+						xmlhttp.readyState === XMLHttpRequest.DONE &&
+						xmlhttp.status === 200
+					) {
+						// Se valida que se haya obtenido una respuesta y el código HTTP sea 200 'OK':
+						document.getElementById("container").innerHTML = xmlhttp.responseText;
+					}
+				};
+
+				// Se ejecuta cuando se recibe la petición hecha al servidor:
+				xmlhttp.onload = () => {
+					if (xmlhttp.status >= 400) {
+						console.error(
+							`Error ${xmlhttp.status}`
+						);
+						document.getElementById(
+							"container"
+						).innerHTML = `<h1 align="center">ERROR ${xmlhttp.status}</h1>`;
+					}
+				};
+
+				// Se envía la petición al servidor:
+				xmlhttp.send(`feedurl=${document.getElementById('textArea').value}`);
+			};
+		</script>
+	</head>
+	<body>
+		<!-- Responsive navbar-->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<div class="container">
+						<a class="navbar-brand" href="../../index.php">Lector de noticias RSS</a>
+						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+						<div class="collapse navbar-collapse" id="navbarSupportedContent">
+								<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+										<li class="nav-item"><a class="nav-link" href="../index.php">Inicio</a></li>
+										<li class="nav-item"><a class="nav-link active" aria-current="page" href="feed.php">Añadir Feeds</a></li>
+				<li class="nav-item"><a class="nav-link" href="about.php">Acerca de</a></li>
+								</ul>
+						</div>
+				</div>
+		</nav>
 		<!-- Header-->
 		<header class="py-5">
 			<div class="container px-5">
@@ -78,49 +118,9 @@
 			<!-- Nested row for non-featured blog posts-->
 			<div id="container" class="container row"></div>
 		</div>
-        <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Optimización de Aplicaciones Web 2023.</p></div>
-        </footer>
-    </body>
-	<script type="text/javascript">
-		const loadPhp = (url) => {
-		    // Se instancia un objeto del tipo XMLHttpRequest:
-			const xmlhttp = new XMLHttpRequest();
-
-			// Parámetros de la petición:
-			const method = "POST";
-			const async = true;
-
-			// Se inicializa la petición al servidor:
-			xmlhttp.open(method, url, async);
-			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-			// Se ejecuta cuando la propiedad readyState se modifica:
-			xmlhttp.onreadystatechange = () => {
-				if (
-					xmlhttp.readyState === XMLHttpRequest.DONE &&
-					xmlhttp.status === 200
-				) {
-					// Se valida que se haya obtenido una respuesta y el código HTTP sea 200 'OK':
-					document.getElementById("container").innerHTML = xmlhttp.responseText;
-				}
-			};
-
-			// Se ejecuta cuando se recibe la petición hecha al servidor:
-			xmlhttp.onload = () => {
-				if (xmlhttp.status >= 400) {
-					console.error(
-						`Error ${xmlhttp.status}`
-					);
-					document.getElementById(
-						"container"
-					).innerHTML = `<h1 align="center">ERROR ${xmlhttp.status}</h1>`;
-				}
-			};
-
-			// Se envía la petición al servidor:            
-            xmlhttp.send(`feedurl=${document.getElementById('textArea').value}`);
-		};
-	</script>
+		<!-- Footer-->
+		<footer class="py-5 bg-dark">
+				<div class="container"><p class="m-0 text-center text-white">Optimización de Aplicaciones Web 2023.</p></div>
+		</footer>
+	</body>
 </html>

@@ -1,10 +1,9 @@
 <?php
-	// Aquí se desarrolla la lógica para guardar los artículos del RSS en la base de datos.
-	if ($_POST['searchtext'] !== '') {
-		$text = $_POST['searchtext'];
-	} else {
+	// Aquí se desarrolla la lógica para buscar los artículos del RSS en la base de datos.
+	if (empty($_POST['searchtext'])) {
 		die;
 	}
+	$text = $_POST['searchtext'];
 
 	// Se obtienen los datos del modelo:
 	require_once("../models/rssReader_model.php");

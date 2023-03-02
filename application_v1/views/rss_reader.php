@@ -37,4 +37,3 @@
 		}
 	}
 	unset($arr_ctgs);
-	

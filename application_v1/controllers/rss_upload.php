@@ -1,13 +1,13 @@
 <?php
 
-	// Aquí se desarrolla la lógica para guardar los artículos del RSS en la base de datos.
-    if ($_POST['feedurl'] !== '') {
-		$urls = $_POST['feedurl'];
+	// Aquí se desarrolla la lógica para subir los artículos del RSS en la base de datos.
+	if (empty($_POST['feedurl'])) {
+		die;
 	}
-
-    require_once("../controllers/rss_storage.php");
-    $urls = preg_replace('/\s/', PHP_EOL, $urls);
-    $urls = explode(PHP_EOL, $urls);
-    foreach ($urls as $url) {
-        rss_storage(trim($url));
-    }
+	$urls = $_POST['feedurl'];
+	require_once("../controllers/rss_storage.php");
+	$urls = preg_replace('/\s/', PHP_EOL, $urls);
+	$urls = explode(PHP_EOL, $urls);
+	foreach ($urls as $url) {
+			rss_storage(trim($url));
+	}
