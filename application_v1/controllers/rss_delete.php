@@ -1,6 +1,6 @@
 <?php
 
-	// Aquí se desarrolla la lógica para eliminar los artículos del RSS en la base de datos.
+	// Aquí se desarrolla la lógica para guardar los artículos del RSS en la base de datos.
 	if ($_POST['feedurl'] !== '') {
 		$urls = $_POST['feedurl'];
 	} else {
