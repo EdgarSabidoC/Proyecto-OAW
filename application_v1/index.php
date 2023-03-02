@@ -21,6 +21,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="views/feed.php">Añadir Feeds</a></li>
                         <li class="nav-item"><a class="nav-link" href="views/about.php">Acerca de</a></li>
                     </ul>
                 </div>
@@ -67,53 +68,16 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Side widget-->
-                    <div class="card mb-4">
-                        <div class="card-header">Añadir Feed</div>
-                        <div class="card-body">Ingresa la URL del Feed que deseas añadir.
-                            <div class="input-group align-items-center justify-content-center">
-                                <form class="col-12" method='POST'>
-                                    <!-- Message input-->
-                                    <div class="form-floating m-3">
-                                        <textarea id="textArea" name="textArea" class="form-control form-control-height" type="text" placeholder="Ingresar Sitio..."></textarea>
-                                        <label for="Ingresar Sitio">Ingresar Sitios</label>
-                                    </div>
-                                    <!-- Submit Button-->
-                                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                                        <button class="btn btn-primary" id="button-delete" type="button" onclick="loadPhp('controllers/rss_delete.php')">Borrar</button>
-                                        <button class="btn btn-primary" id="button-upload" type="button" onclick="loadPhp('controllers/rss_upload.php')">Guardar</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
                     <!-- Categories widget-->
                     <div class="card mb-4">
                         <div class="card-header">Ordenar Por:</div>
                         <div class="card-body">
-                            <select id="formSelect" class="form-select" onchange="searchByCategories(); getCategories();" aria-label="Default select">
-                                <option value="1">Mas reciente</option>
+                            <select class="form-select" aria-label="Default select">
+                                <option value="1">Fecha</option>
                                 <option value="2">Título</option>
                                 <option value="3">Descripción</option>
-                                <option value="4">Menos reciente</option>
                             </select>
                             <h6 class="m-3">Categorias:</h6>
-                            <div class="row" id="link-categories">
-                                <div class="col-sm-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">Web Design</a></li>
-                                        <li><a href="#!">HTML</a></li>
-                                        <li><a href="#!">Freebies</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">JavaScript</a></li>
-                                        <li><a href="#!">CSS</a></li>
-                                        <li><a href="#!">Tutorials</a></li>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -161,82 +125,7 @@
 			};
 
 			// Se envía la petición al servidor:
-            if(document.getElementById('searchBox').value){
-                xmlhttp.send(`searchtext=${document.getElementById('searchBox').value}`);
-            }
-            if(document.getElementById('textArea').value){
-                xmlhttp.send(`feedurl=${document.getElementById('textArea').value}`);   
-            }
+            xmlhttp.send(`searchtext=${document.getElementById('searchBox').value}`);
 		};
-
-        function searchByCategories() {
-            var inputTextSearch = document.getElementById("searchBox").value;
-            var selectedItem = document.getElementById("formSelect").value;
-            const xmlhttp = new XMLHttpRequest();
-            
-            xmlhttp.onreadystatechange = () => {
-                if (
-                    xmlhttp.readyState === XMLHttpRequest.DONE &&
-                    xmlhttp.status === 200
-                ) {
-                    // Se valida que se haya obtenido una respuesta y el código HTTP sea 200 'OK':
-                    document.getElementById("container").innerHTML = xmlhttp.responseText;
-                }
-            };
-
-            // Se ejecuta cuando se recibe la petición hecha al servidor:
-            xmlhttp.onload = () => {
-                if (xmlhttp.status >= 400) {
-                    console.error(
-                        `Error ${xmlhttp.status}`
-                    );
-                    document.getElementById(
-                        "container"
-                    ).innerHTML = `<h1 align="center">ERROR ${xmlhttp.status}</h1>`;
-                }
-            };
-
-            xmlhttp.open("GET", "controllers/rss_categories.php?searchBox=" + inputTextSearch + "&formSelect=" + selectedItem, true);
-            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.send();
-        }
-
-        function getCategories() {
-            var inputTextSearch = document.getElementById("searchBox").value;
-            var selectedItem = document.getElementById("formSelect").value;
-            const xmlhttp = new XMLHttpRequest();
-            
-            xmlhttp.onreadystatechange = () => {
-                if (
-                    xmlhttp.readyState === XMLHttpRequest.DONE &&
-                    xmlhttp.status === 200
-                ) {
-                    // Se valida que se haya obtenido una respuesta y el código HTTP sea 200 'OK':
-                    document.getElementById("link-categories").innerHTML = xmlhttp.responseText;
-                }
-            };
-
-            // Se ejecuta cuando se recibe la petición hecha al servidor:
-            xmlhttp.onload = () => {
-                if (xmlhttp.status >= 400) {
-                    console.error(
-                        `Error ${xmlhttp.status}`
-                    );
-                    document.getElementById(
-                        "link-categories"
-                    ).innerHTML = `<h1 align="center">ERROR ${xmlhttp.status}</h1>`;
-                }
-            };
-
-            xmlhttp.open("GET", "controllers/rss_get_categories.php?searchBox=" + inputTextSearch + "&formSelect=" + selectedItem, true);
-            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.send();
-        }
-	</script>
-    <!-- Script que sirve para evitar que el formulario se reenvíe al cargar la página -->
-	<script type='text/javascript'>
-		if (window.history.replaceState) {
-		window.history.replaceState(null, null, window.location.href);
-		}
 	</script>
 </html>

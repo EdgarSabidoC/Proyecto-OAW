@@ -16,11 +16,12 @@
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="index.php">Lector de noticias RSS</a>
+                <a class="navbar-brand" href="../../index.php">Lector de noticias RSS</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link" href="../index.php">Inicio</a></li>
+						<li class="nav-item"><a class="nav-link" href="feed.php">Añadir Feeds</a></li>
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="about.php">Acerca de</a></li>
                     </ul>
                 </div>
