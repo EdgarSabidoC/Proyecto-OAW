@@ -7,10 +7,10 @@
         <meta name="author" content="" />
         <title>Lector de noticias RSS - Inicio</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="application/assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="application/css/styles.css" rel="stylesheet" />
-        <link href="application/css/styles_front.css" rel="stylesheet" />
+        <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/styles_front.css" rel="stylesheet" />
     </head>
     <body>
         <!-- Responsive navbar-->
@@ -21,7 +21,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="application/views/about.php">Acerca de</a></li>
+                        <li class="nav-item"><a class="nav-link" href="views/about.php">Acerca de</a></li>
                     </ul>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                                 Lector Web de RSS feeds personalizable. Recopila la información de los sitios web en un entorno virtual organizado para que puedas seguir las noticias de tu blog o canal de noticias favorito.
                             </p>
                             <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                                <a class="btn btn-primary btn-lg px-4 me-sm-3" onclick="loadPhp('application/controllers/rss_reader.php')">Mostrar</a>
+                                <a class="btn btn-primary btn-lg px-4 me-sm-3" onclick="loadPhp('controllers/rss_reader.php')">Mostrar</a>
                                 <a class="btn btn-outline-light btn-lg px-4" href="">Actualizar</a>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                         <div class="card-body">
                             <div class="input-group">
                                 <input id="searchBox" class="form-control" type="text" placeholder="Busca noticias y más..." aria-label="Busca noticias y más..." aria-describedby="button-search" />
-                                <button class="btn btn-primary" id="button-search" type="button" onclick="loadPhp('application/controllers/rss_search.php')">¡Listo!</button>
+                                <button class="btn btn-primary" id="button-search" type="button" onclick="loadPhp('controllers/rss_search.php')">¡Listo!</button>
                             </div>
                         </div>
                     </div>
@@ -80,8 +80,8 @@
                                     </div>
                                     <!-- Submit Button-->
                                     <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                                        <button class="btn btn-primary" id="button-delete" type="button" onclick="loadPhp('application/controllers/rss_delete.php')">Borrar</button>
-                                        <button class="btn btn-primary" id="button-upload" type="button" onclick="loadPhp('application/controllers/rss_upload.php')">Guardar</button>
+                                        <button class="btn btn-primary" id="button-delete" type="button" onclick="loadPhp('controllers/rss_delete.php')">Borrar</button>
+                                        <button class="btn btn-primary" id="button-upload" type="button" onclick="loadPhp('controllers/rss_upload.php')">Guardar</button>
                                     </div>
                                 </form>
                             </div>
@@ -134,7 +134,7 @@
 
 			// Se inicializa la petición al servidor:
 			xmlhttp.open(method, url, async);
-			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.setRequestHeader("Content-type", "x-www-form-urlencoded");
 
 			// Se ejecuta cuando la propiedad readyState se modifica:
 			xmlhttp.onreadystatechange = () => {
@@ -168,7 +168,7 @@
             }
 		};
 	</script>
-    <!-- Script que sirve para evitar que el formulario se reenvíe al cargar la página -->
+	<!-- Script que sirve para evitar que el formulario se reenvíe al cargar la página -->
 	<script type='text/javascript'>
 		if (window.history.replaceState) {
 		window.history.replaceState(null, null, window.location.href);
