@@ -5,7 +5,7 @@
 		$rssModel = new rssReaderModel();
 
 		// Instanciación del feed:
-		require_once('../libraries/Third_party/SimplePie.compiled.php');
+		require_once('../libraries/third_party/simplepie-1.8.0/autoloader.php');
 		$feed = new SimplePie();
 		$feed->set_feed_url($url);
 
