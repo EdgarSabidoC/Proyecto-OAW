@@ -164,7 +164,7 @@
                 xmlhttp.send(`searchtext=${document.getElementById('searchBox').value}`);
             }
             if(document.getElementById('textArea').value){
-                xmlhttp.send(`feedurl=${document.getElementById('textArea').value}`);   
+                xmlhttp.send(`feedurl=${document.getElementById('textArea').value}`);
             }
 		};
 	</script>

@@ -10,6 +10,6 @@
     require_once("../controllers/rss_storage.php");
     $urls = preg_replace('/\s/', PHP_EOL, $urls);
     $urls = explode(PHP_EOL, $urls);
-    foreach ($urls as $url){
+    foreach ($urls as $url) {
         rss_storage(trim($url));
     }
