@@ -33,9 +33,10 @@ class rssReaderModel
 		return $this->items;
 	}
 
-	public function search_items_by_categories($text, $selectOption)
+	// Buscar las noticias/artículos de la DB:
+	public function search_items_category($text)
 	{
-		$sql = "SELECT * FROM feed WHERE (title LIKE '%" . $text . "%' OR description LIKE '%" . $text . "%') " . $selectOption . ";";
+		$sql = "SELECT * FROM feed WHERE categories LIKE '%" . $text . "%';";
 		$query = $this->db->query($sql);
 		while ($rows = $query->fetch_assoc()) {
 			$this->items[] = $rows;
@@ -43,9 +44,23 @@ class rssReaderModel
 		return $this->items;
 	}
 
-	public function getCategories($text, $selectOption)
+	public function search_items_by_categories($text, $selectOption)
 	{
-		$sql = "SELECT * FROM feed WHERE (title LIKE '%" . $text . "%' OR description LIKE '%" . $text . "%') " . $selectOption . ";";
+		if (!$text){
+			$sql = "SELECT * FROM feed " . $selectOption . ";";
+		} else {
+			$sql = "SELECT * FROM feed WHERE (title LIKE '%" . $text . "%' OR description LIKE '%" . $text . "%') " . $selectOption . ";";
+		}
+		$query = $this->db->query($sql);
+		while ($rows = $query->fetch_assoc()) {
+			$this->items[] = $rows;
+		}
+		return $this->items;
+	}
+
+	public function getCategories()
+	{
+		$sql = "SELECT * FROM feed;";
 		$query = $this->db->query($sql);
 		while ($rows = $query->fetch_assoc()) {
 			$this->items[] = $rows;

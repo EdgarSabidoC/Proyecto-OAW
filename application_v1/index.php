@@ -54,7 +54,7 @@
 	</script>
 </head>
 
-<body>
+<body onload="getCategories()">
 	<!-- Responsive navbar-->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container">
@@ -122,7 +122,7 @@
 				<div class="card mb-4">
 					<div class="card-header">Ordenar Por:</div>
 					<div class="card-body">
-						<select id="formSelect" class="form-select" onchange="searchByCategories(); getCategories();"
+						<select id="formSelect" class="form-select" onchange="searchByCategories()"
 							aria-label="Default select">
 							<option value="1">Mas reciente</option>
 							<option value="2">Título</option>
@@ -180,6 +180,36 @@
 		xmlhttp.send();
 	}
 
+	function searchCategories(category) {
+		const xmlhttp = new XMLHttpRequest();
+
+		xmlhttp.onreadystatechange = () => {
+			if (
+				xmlhttp.readyState === XMLHttpRequest.DONE &&
+				xmlhttp.status === 200
+			) {
+				// Se valida que se haya obtenido una respuesta y el código HTTP sea 200 'OK':
+				document.getElementById("container").innerHTML = xmlhttp.responseText;
+			}
+		};
+
+		// Se ejecuta cuando se recibe la petición hecha al servidor:
+		xmlhttp.onload = () => {
+			if (xmlhttp.status >= 400) {
+				console.error(
+					`Error ${xmlhttp.status}`
+				);
+				document.getElementById(
+					"container"
+				).innerHTML = `<h1 align="center">ERROR ${xmlhttp.status}</h1>`;
+			}
+		};
+
+		xmlhttp.open("GET", "controllers/rss_search_category.php", true);
+		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xmlhttp.send(category);
+	}
+
 	function getCategories() {
 		var inputTextSearch = document.getElementById("searchBox").value;
 		var selectedItem = document.getElementById("formSelect").value;
@@ -207,7 +237,7 @@
 			}
 		};
 
-		xmlhttp.open("GET", "controllers/rss_get_categories.php?searchBox=" + inputTextSearch + "&formSelect=" + selectedItem, true);
+		xmlhttp.open("GET", "controllers/rss_get_categories.php", true);
 		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xmlhttp.send();
 	}

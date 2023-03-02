@@ -33,7 +33,7 @@ foreach ($arrayCategories as $category) {
     }
 
     if ($category !== '') {
-        echo "<li><a href='#!'>" . $category . "</a></li>";
+        echo "<li onclick='searchCategories(". $category .")'><a href=''>" . $category . "</a></li>";
     }
 
     if ($i === 5) {
