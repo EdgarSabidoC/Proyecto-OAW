@@ -1,13 +1,6 @@
 <?php
 	$i = 0;
 
-	// Imagen de la noticia:
-	if ($item['image']) {
-	$image = $item['image'];
-	} else {
-		$image = 'https://dummyimage.com/700x350/dee2e6/6c757d.jpg';
-	}
-
 	// Aquí se accesa a los items de la base de datos para imprimirlos en pantalla.
 	foreach ($items as $item) {
 		if (strlen($item['title'])>50) {
@@ -23,6 +16,14 @@
 		if ($i == 0) {
 			echo "<div class='col-lg-6'>";
 		}
+
+		// Imagen de la noticia:
+		if ($item['image']) {
+		$image = $item['image'];
+		} else {
+			$image = 'https://dummyimage.com/700x350/dee2e6/6c757d.jpg';
+		}
+
 		echo
 		"<div class='card mb-4'>
 			<a href='{$item['permalink']}'><img class='card-img-top' src={$image} alt='...' /></a>
