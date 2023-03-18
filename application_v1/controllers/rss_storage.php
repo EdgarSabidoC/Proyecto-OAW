@@ -45,6 +45,10 @@
 				}
 			}
 
-			$rssModel->set_item($title, $date, $description, $permalink, $categories);
+			if ($item->get_enclosure()->get_link()) {
+				$image = $item->get_enclosure()->get_link();
+			}
+
+			$rssModel->set_item($title, $date, $description, $permalink, $categories, $image);
 		}
 	}
