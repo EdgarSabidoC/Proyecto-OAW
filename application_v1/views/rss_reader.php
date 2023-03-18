@@ -1,13 +1,21 @@
 <?php
 	$i = 0;
+
+	// Imagen de la noticia:
+	if ($item['image']) {
+	$image = $item['image'];
+	} else {
+		$image = 'https://dummyimage.com/700x350/dee2e6/6c757d.jpg';
+	}
+
 	// Aquí se accesa a los items de la base de datos para imprimirlos en pantalla.
 	foreach ($items as $item) {
-		if(strlen($item['title'])>50){
+		if (strlen($item['title'])>50) {
 			$title = substr($item['title'], 0, 50)."...";
 		} else {
 			$title = $item['title'];
 		}
-		if(strlen($item['description'])>70){
+		if (strlen($item['description'])>70) {
 			$description = substr($item['description'], 0, 70)."...";
 		} else {
 			$description = $item['description'];
@@ -17,7 +25,7 @@
 		}
 		echo
 		"<div class='card mb-4'>
-			<a href='{$item['permalink']}'><img class='card-img-top' src='https://dummyimage.com/700x350/dee2e6/6c757d.jpg' alt='...' /></a>
+			<a href='{$item['permalink']}'><img class='card-img-top' src={$image} alt='...' /></a>
 			<div class='card-body'>
 				<div class='small text-muted'>{$item['date']}</div>
 				<h2 class='card-title h4'>{$title}</h2>";

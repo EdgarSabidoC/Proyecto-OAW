@@ -12,5 +12,6 @@ CREATE TABLE IF NOT EXISTS rssFeed.feed(
 		description VARCHAR(250) NOT NULL,
 		permalink VARCHAR(250) NOT NULL,
 		categories TEXT NOT NULL,
+		image TEXT NOT NULL,
 		PRIMARY KEY(id)
 );
