@@ -33,8 +33,9 @@ foreach ($arrayCategories as $category) {
     }
 
     if ($category !== '') {
-        //(echo "<li onclick='searchCategories(". $category .")'><a href=''>" . $category . "</a></li>";
-        echo "<li><a onclick=searchCategories('". $category ."') href=''>" . $category . "</a></li>";
+        $stringCategory = $category . "";
+        //(echo "<li onclick='searchCategories(". $category .")'><a href=''>" . $category . "</a></li>";//etiqueta original que no funciona el evento
+        echo "<li><a onclick=searchCategories('". $category ."'); href='#!'>" . $category . "</a></li>";
     }
 
     if ($i === 5) {
