@@ -1,6 +1,6 @@
 <?php
 // Se obtienen los datos del modelo:
-$parameter = $_POST['category']; 
+$parameter = $_GET['category']; 
 
 require_once("../models/rssReader_model.php");
 $feed = new rssReaderModel();

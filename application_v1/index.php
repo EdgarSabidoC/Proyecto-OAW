@@ -85,6 +85,9 @@
 	}
 
 	function searchCategories(category) {
+		//console.log("hola");
+		console.log(category);
+
 		const xmlhttp = new XMLHttpRequest();
 
 		xmlhttp.onreadystatechange = () => {
@@ -109,9 +112,10 @@
 			}
 		};
 
-		xmlhttp.open("GET", "controllers/rss_search_category.php", true);
+		xmlhttp.open("GET", "controllers/rss_search_category.php?category=" + category, true);
 		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xmlhttp.send(category);
+		xmlhttp.send();
+
 	}
 
 	function getCategories() {
