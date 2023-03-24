@@ -48,6 +48,10 @@
 			if ($item->get_enclosure()->get_link()) {
 				$image = $item->get_enclosure()->get_link();
 			}
+			else {
+				$image = 'https://dummyimage.com/700x350/dee2e6/6c757d.jpg';
+			}
+
 
 			$rssModel->set_item($title, $date, $description, $permalink, $categories, $image);
 		}

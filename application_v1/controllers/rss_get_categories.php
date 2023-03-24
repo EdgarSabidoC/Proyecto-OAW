@@ -6,7 +6,7 @@ $items = $feed->getCategories();
 unset($feed);
 
 if (!$items) {
-	echo "<h4>Aun no hay resultados...</h3>";
+	echo "<h6>Sin categorias...</h6>";
 	die;
 } else {
 	// Si no hay un error se llama a la vista:
