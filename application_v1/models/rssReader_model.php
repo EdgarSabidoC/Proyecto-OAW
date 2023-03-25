@@ -12,8 +12,7 @@ class rssReaderModel
 	}
 
 	// Obtiene todas las noticias/artículos de la DB:
-	public function get_items()
-	{
+	public function get_items() {
 		$sql = "SELECT * FROM feed ORDER BY date DESC;";
 		$query = $this->db->query($sql);
 		while ($rows = $query->fetch_assoc()) {
@@ -23,8 +22,7 @@ class rssReaderModel
 	}
 
 	// Buscar las noticias/artículos de la DB:
-	public function search_items($text)
-	{
+	public function search_items($text) {
 		$sql = "SELECT * FROM feed WHERE (title LIKE '%" . $text . "%' OR description LIKE '%" . $text . "%');";
 		$query = $this->db->query($sql);
 		while ($rows = $query->fetch_assoc()) {
@@ -34,8 +32,7 @@ class rssReaderModel
 	}
 
 	// Buscar las noticias/artículos de la DB:
-	public function search_items_category($text)
-	{
+	public function search_items_category($text) {
 		$sql = "SELECT * FROM feed WHERE categories LIKE '%" . $text . "%';";
 		$query = $this->db->query($sql);
 		while ($rows = $query->fetch_assoc()) {
@@ -44,8 +41,7 @@ class rssReaderModel
 		return $this->items;
 	}
 
-	public function search_items_by_categories($text, $selectOption)
-	{
+	public function search_items_by_categories($text, $selectOption) {
 		if (!$text){
 			$sql = "SELECT * FROM feed " . $selectOption . ";";
 		} else {
@@ -58,8 +54,7 @@ class rssReaderModel
 		return $this->items;
 	}
 
-	public function getCategories()
-	{
+	public function getCategories() {
 		$sql = "SELECT * FROM feed;";
 		$query = $this->db->query($sql);
 		while ($rows = $query->fetch_assoc()) {
@@ -69,10 +64,9 @@ class rssReaderModel
 	}
 
 	// Almacena en la BD los items:
-	public function set_item($title, $date, $description, $permalink, $categories)
-	{
-		$sql = "INSERT INTO feed (title, date, description, permalink, categories)
-							VALUES ('" . $title . "', '" . $date . "', '" . $description . "', '" . $permalink . "', '" . $categories . "')";
+	public function set_item($title, $date, $description, $permalink, $categories, $image) {
+		$sql = "INSERT INTO feed (title, date, description, permalink, categories, image)
+							VALUES ('" . $title . "', '" . $date . "', '" . $description . "', '" . $permalink . "', '" . $categories . "', '" . $image . "')";
 		if ($this->db->query($sql)) {
 			return true;
 		}
@@ -80,8 +74,7 @@ class rssReaderModel
 	}
 
 	// Elimina los items dentro de la BD:
-	public function delete_items()
-	{
+	public function delete_items() {
 		$sql = "DELETE FROM feed";
 		if ($this->db->query($sql)) {
 			return true;
