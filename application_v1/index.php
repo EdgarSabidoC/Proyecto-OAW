@@ -84,9 +84,9 @@
 		xmlhttp.send();
 	}
 
-	function searchCategories(category) {
+	function searchCategory(category) {
+		console.log(category);
 		const xmlhttp = new XMLHttpRequest();
-
 		xmlhttp.onreadystatechange = () => {
 			if (
 				xmlhttp.readyState === XMLHttpRequest.DONE &&
@@ -96,7 +96,6 @@
 				document.getElementById("container").innerHTML = xmlhttp.responseText;
 			}
 		};
-
 		// Se ejecuta cuando se recibe la petición hecha al servidor:
 		xmlhttp.onload = () => {
 			if (xmlhttp.status >= 400) {
@@ -108,10 +107,9 @@
 				).innerHTML = `<h1 align="center">ERROR ${xmlhttp.status}</h1>`;
 			}
 		};
-
-		xmlhttp.open("GET", "controllers/rss_search_category.php", true);
+		xmlhttp.open("GET", "controllers/rss_search_category.php?category=" + category, true);
 		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xmlhttp.send(category);
+		xmlhttp.send();
 	}
 
 	function getCategories() {
@@ -238,5 +236,8 @@
 		</div>
 	</footer>
 </body>
-<script>loadPhp('controllers/rss_reader.php'); getCategories();</script>
+<script>
+	loadPhp('controllers/rss_reader.php');
+	getCategories();
+</script>
 </html>
