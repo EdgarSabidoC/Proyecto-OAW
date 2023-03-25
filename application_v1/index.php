@@ -107,9 +107,10 @@
 				).innerHTML = `<h1 align="center">ERROR ${xmlhttp.status}</h1>`;
 			}
 		};
-		xmlhttp.open("GET", "controllers/rss_search_category.php?category=" + category, true);
+
+		xmlhttp.open("GET", "controllers/rss_search_category.php", true);
 		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xmlhttp.send();
+		xmlhttp.send(category);
 	}
 
 	function getCategories() {
