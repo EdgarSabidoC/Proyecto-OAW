@@ -18,8 +18,8 @@ foreach ($items as $item) {
 $arrayCategories = array_unique($arrayCategories);
 
 //imprimmos 6 diferentes categorias tomando solo la primera categoria de cada item sin repetir
-if(!$arrayCategories){
-    echo "<h6>Sin categorias...</h6>";
+if (!$arrayCategories) {
+    echo "<h6>Sin categorías...</h6>";
 	die;
 }
 $i = 0;
