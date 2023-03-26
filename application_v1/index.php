@@ -84,9 +84,9 @@
 		xmlhttp.send();
 	}
 
-	function searchCategories(category) {
+	function searchCategory(category) {
+		console.log(category);
 		const xmlhttp = new XMLHttpRequest();
-
 		xmlhttp.onreadystatechange = () => {
 			if (
 				xmlhttp.readyState === XMLHttpRequest.DONE &&
@@ -96,7 +96,6 @@
 				document.getElementById("container").innerHTML = xmlhttp.responseText;
 			}
 		};
-
 		// Se ejecuta cuando se recibe la petición hecha al servidor:
 		xmlhttp.onload = () => {
 			if (xmlhttp.status >= 400) {
@@ -148,7 +147,7 @@
 	</script>
 </head>
 
-<body onload="getCategories()">
+<body>
 	<!-- Responsive navbar-->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container">
@@ -183,7 +182,8 @@
 							<a class="btn btn-primary btn-lg px-4 me-sm-3"
 								onclick="loadPhp('controllers/rss_reader.php')">Mostrar</a>
 							<a class="btn btn-outline-light btn-lg px-4"
-								onclick="loadPhp('controllers/rss_update.php')">Actualizar</a>
+								onclick="loadPhp('controllers/rss_update.php'); loadPhp('controllers/rss_reader.php');
+								getCategories();">Actualizar</a>
 						</div>
 					</div>
 				</div>
@@ -238,6 +238,7 @@
 	</footer>
 </body>
 <script>
-	loadPhp('controllers/start.php');
+	loadPhp('controllers/rss_reader.php');
+	getCategories();
 </script>
 </html>
