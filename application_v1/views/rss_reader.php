@@ -1,17 +1,21 @@
 <?php
 	$i = 0;
-
+	$lastElement = end($items);
 	// Aquí se accesa a los items de la base de datos para imprimirlos en pantalla.
 	foreach ($items as $item) {
-
 		$title = $item['title'];
 		$description = $item['description'];
 		$date = $item['date'];
 		$link = $item['permalink'];
 		$image = $item['image'];
+		$categories = $item['categories'];
 
 		if ($i == 0) {
-			echo "<div class='card-group'>";
+			if($item == $lastElement){
+				echo "<div class='col-lg-6'>";
+			} else {
+				echo "<div class='card-group'>";
+			}
 		}
 
 		echo
@@ -19,19 +23,10 @@
 			<a href='{$link}'><img class='card-img-top' src={$image} alt='Image New' /></a>
 			<div class='card-body'>
 				<div class='small text-muted'>{$date}</div>
-				<h2 class='card-title cut-title h4'>{$title}</h2>
+				<a href='{$link}'><h2 class='card-title cut-title h4'>{$title}</h2></a>
 				<p class='card-text cut-text'>{$description}</p>";
-				if ($item['categories']) {
-					$arr_ctgs = explode('|', $item['categories']);
-					$j = 0;
-					foreach ($arr_ctgs as $categories) {
-						echo "<div class='badge bg-primary bg-gradient  mb-2'>{$categories}</div>";
-						if ($j < 1) {
-							$j++;
-						} else {
-							break;
-						}
-					}
+				if ($categories) {
+					echo "<a onclick='searchCategory(\"{$categories}\");'><div class='btn badge bg-primary bg-gradient mb-2'>{$categories}</div></a>";
 				}
 		echo
 			"</div>
