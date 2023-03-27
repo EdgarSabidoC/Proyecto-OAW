@@ -13,6 +13,7 @@
 	<link href="css/styles.css" rel="stylesheet" />
 	<link href="css/styles_front.css" rel="stylesheet" />
 	<script type="text/javascript">
+		let query = "";
 		const loadPhp = (url) => {
 			// Se instancia un objeto del tipo XMLHttpRequest:
 			const xmlhttp = new XMLHttpRequest();
@@ -52,9 +53,13 @@
 			xmlhttp.send(`searchtext=${document.getElementById('searchBox').value}`);
 		};
 
+		const saveQuery = (query) => {
+			window.query = query;
+		};
+
 		function searchByCategories() {
-		var inputTextSearch = document.getElementById("searchBox").value;
-		var selectedItem = document.getElementById("formSelect").value;
+		let inputTextSearch = window.query;
+		let selectedItem = document.getElementById("formSelect").value;
 		const xmlhttp = new XMLHttpRequest();
 
 		xmlhttp.onreadystatechange = () => {
@@ -113,8 +118,8 @@
 	}
 
 	function getCategories() {
-		var inputTextSearch = document.getElementById("searchBox").value;
-		var selectedItem = document.getElementById("formSelect").value;
+		let inputTextSearch = document.getElementById("searchBox").value;
+		let selectedItem = document.getElementById("formSelect").value;
 		const xmlhttp = new XMLHttpRequest();
 
 		xmlhttp.onreadystatechange = () => {
@@ -150,7 +155,7 @@
 	<!-- Responsive navbar-->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container">
-			<a class="navbar-brand" href="index.php">Lector de noticias RSS</a>
+			<a class="navbar-brand" href="index.php" onclick="window.query='';">Lector de noticias RSS</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
 				aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -179,9 +184,9 @@
 						</p>
 						<div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
 							<a class="btn btn-primary btn-lg px-4 me-sm-3"
-								onclick="loadPhp('controllers/rss_reader.php')">Mostrar</a>
+								onclick="window.query=''; loadPhp('controllers/rss_reader.php')">Mostrar</a>
 							<a class="btn btn-outline-light btn-lg px-4"
-								onclick="loadPhp('controllers/rss_update.php'); loadPhp('controllers/rss_reader.php');
+								onclick="window.query=''; loadPhp('controllers/rss_update.php'); loadPhp('controllers/rss_reader.php');
 								getCategories();">Actualizar</a>
 						</div>
 					</div>
@@ -207,7 +212,8 @@
 							<input id="searchBox" class="form-control" type="text" placeholder="Busca noticias y más..."
 								aria-label="Busca noticias y más..." aria-describedby="button-search" />
 							<button class="btn btn-primary" id="button-search" type="button"
-								onclick="loadPhp('controllers/rss_search.php')">¡Listo!</button>
+								onclick="saveQuery(document.getElementById('searchBox').value);
+								loadPhp('controllers/rss_search.php');">Buscar</button>
 						</div>
 					</div>
 				</div>
