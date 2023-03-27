@@ -12,6 +12,23 @@
 		<link href="../css/styles.css" rel="stylesheet" />
 		<link href="../css/styles_front.css" rel="stylesheet" />
 		<script type="text/javascript">
+			function show(id) {
+				document.getElementById(id).style.display = 'block';
+			}
+			function hide(id) {
+				document.getElementById(id).style.display = 'none';
+			}
+			function successload(id) {
+				setTimeout(function() { hide(id); }, 5000);
+				setTimeout(function() { show('success'); }, 5000);
+				setTimeout(function() { hide('success'); }, 7000);
+			}
+			function failload(id) {
+				setTimeout(function() { hide(id); }, 5000);
+				setTimeout(function() { show('danger'); }, 5000);
+				setTimeout(function() { hide('danger'); }, 7000);
+
+			}
 			const loadPhp = (url) => {
 				// Se instancia un objeto del tipo XMLHttpRequest:
 				const xmlhttp = new XMLHttpRequest();
@@ -44,11 +61,13 @@
 						document.getElementById(
 							"container"
 						).innerHTML = `<h1 align="center">ERROR ${xmlhttp.status}</h1>`;
+						failload('loading');
 					}
 				};
 
 				// Se envía la petición al servidor:
 				xmlhttp.send(`feedurl=${document.getElementById('textArea').value}`);
+				successload('loading');
 			};
 		</script>
 	</head>
@@ -105,7 +124,7 @@
 								<!-- Submit Button-->
 								<div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
 									<button class="btn btn-primary" id="button-delete" type="button" onclick="loadPhp('../controllers/rss_delete.php')">Borrar</button>
-									<button class="btn btn-primary" id="button-upload" type="button" onclick="loadPhp('../controllers/rss_upload.php')">Guardar</button>
+									<button class="btn btn-primary" id="button-upload" type="button" onclick="loadPhp('../controllers/rss_upload.php'); show('loading');">Guardar</button>
 								</div>
 							</form>
 						</div>
@@ -114,10 +133,19 @@
 			</div>
 		</section>
 		<!-- Blog entries-->
-		<div class="col-lg-8">
-			<!-- Nested row for non-featured blog posts-->
-			<div id="container" class="container row"></div>
-		</div>
+		<section class="py-5">
+			<div class="d-flex justify-content-center">
+				<div id="loading" class="spinner-border" role="status">
+					<span class="sr-only"></span>
+				</div>
+				<div id="success" class="spinner-grow text-success" role="status">
+					<span class="sr-only"></span>
+				</div>
+				<div id="danger" class="spinner-grow text-danger" role="status">
+					<span class="sr-only"></span>
+				</div>
+			</div>
+		</section>
 		<!-- Footer-->
 		<footer class="py-5 bg-dark">
 				<div class="container"><p class="m-0 text-center text-white">Optimización de Aplicaciones Web 2023.</p></div>
