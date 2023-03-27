@@ -31,3 +31,11 @@ header {
 .cut-text { 
   -webkit-line-clamp: 3 !important; 
 }
+
+.spinner-border {
+  display: none;
+}
+
+.spinner-grow {
+  display: none;
+}
