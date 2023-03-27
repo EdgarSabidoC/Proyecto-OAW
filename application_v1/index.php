@@ -210,7 +210,9 @@
 					<div class="card-body">
 						<div class="input-group">
 							<input id="searchBox" class="form-control" type="text" placeholder="Busca noticias y más..."
-								aria-label="Busca noticias y más..." aria-describedby="button-search" />
+								aria-label="Busca noticias y más..." aria-describedby="button-search"
+								onKeyUp="if (event.keyCode === 13) { saveQuery(document.getElementById('searchBox').value);
+								loadPhp('controllers/rss_search.php'); }" />
 							<button class="btn btn-primary" id="button-search" type="button"
 								onclick="saveQuery(document.getElementById('searchBox').value);
 								loadPhp('controllers/rss_search.php');">Buscar</button>
