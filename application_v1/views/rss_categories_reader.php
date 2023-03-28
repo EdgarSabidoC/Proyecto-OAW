@@ -1,28 +1,11 @@
 <?php
-
-	//creamos un array de las categorias con el primera categoria de cada item
-	$arrayCategories = array();
-	foreach ($items as $item) {
-		if ($item["categories"] !== '') {
-			$newArray = explode("|", $item["categories"]);
-			if (array_key_exists(0, $newArray)) {
-				if ($newArray[0] !== '') {
-					$string = $newArray[0];
-					array_push($arrayCategories, $string);
-				}
-			}
-		}
-	}
-
-	//eliminamos categorias repetidos
-	$arrayCategories = array_unique($arrayCategories);
-
 	//imprimmos 6 diferentes categorias tomando solo la primera categoria de cada item sin repetir
 	if (!$arrayCategories) {
 		echo "<h6>Sin categorías...</h6>";
 		die;
 	}
 	$i = 0;
+
 	foreach ($arrayCategories as $category) {
 		if ($i === 0) {
 			echo "<div class='col-sm-6'>";
@@ -37,7 +20,6 @@
 		}
 
 		if ($category !== '') {
-			$stringCategory = $category . "";
 			echo "<li onclick='searchCategory(\"{$category}\");'><a href='#!'>{$category}</a></li>";
 		}
 

@@ -26,6 +26,7 @@ header {
 
 .cut-title { 
   -webkit-line-clamp: 2 !important;
+  color: black;
 }
 
 .cut-text { 
@@ -38,4 +39,21 @@ header {
 
 .spinner-grow {
   display: none;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  color: inherit;
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
 }

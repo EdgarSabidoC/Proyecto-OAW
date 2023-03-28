@@ -54,8 +54,8 @@ class rssReaderModel
 		return $this->items;
 	}
 
-	public function getCategories() {
-		$sql = "SELECT * FROM feed;";
+	public function get_categories() {
+		$sql = "SELECT categories FROM feed;";
 		$query = $this->db->query($sql);
 		while ($rows = $query->fetch_assoc()) {
 			$this->items[] = $rows;

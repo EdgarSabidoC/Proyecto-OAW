@@ -58,35 +58,37 @@
 		};
 
 		function searchByCategories() {
-		let inputTextSearch = window.query;
-		let selectedItem = document.getElementById("formSelect").value;
-		const xmlhttp = new XMLHttpRequest();
-
-		xmlhttp.onreadystatechange = () => {
-			if (
-				xmlhttp.readyState === XMLHttpRequest.DONE &&
-				xmlhttp.status === 200
-			) {
-				// Se valida que se haya obtenido una respuesta y el código HTTP sea 200 'OK':
-				document.getElementById("container").innerHTML = xmlhttp.responseText;
+			if(!window.query){
+				window.query = "";
 			}
-		};
+			let inputTextSearch = window.query;
+			let selectedItem = document.getElementById("formSelect").value;
+			const xmlhttp = new XMLHttpRequest();
 
-		// Se ejecuta cuando se recibe la petición hecha al servidor:
-		xmlhttp.onload = () => {
-			if (xmlhttp.status >= 400) {
-				console.error(
-					`Error ${xmlhttp.status}`
-				);
-				document.getElementById(
-					"container"
-				).innerHTML = `<h1 align="center">ERROR ${xmlhttp.status}</h1>`;
-			}
-		};
+			xmlhttp.onreadystatechange = () => {
+				if (
+					xmlhttp.readyState === XMLHttpRequest.DONE &&
+					xmlhttp.status === 200
+				) {
+					// Se valida que se haya obtenido una respuesta y el código HTTP sea 200 'OK':
+					document.getElementById("container").innerHTML = xmlhttp.responseText;
+				}
+			};
 
-		xmlhttp.open("GET", "controllers/rss_categories.php?searchBox=" + inputTextSearch + "&formSelect=" + selectedItem, true);
-		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xmlhttp.send();
+			// Se ejecuta cuando se recibe la petición hecha al servidor:
+			xmlhttp.onload = () => {
+				if (xmlhttp.status >= 400) {
+					console.error(
+						`Error ${xmlhttp.status}`
+					);
+					document.getElementById(
+						"container"
+					).innerHTML = `<h1 align="center">ERROR ${xmlhttp.status}</h1>`;
+				}
+			};
+			xmlhttp.open("GET", "controllers/rss_categories.php?searchBox=" + inputTextSearch + "&formSelect=" + selectedItem, true);
+			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.send();
 	}
 
 	function searchCategory(category) {
