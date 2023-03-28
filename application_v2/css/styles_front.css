@@ -1,0 +1,59 @@
+header {
+  display: table;
+  width: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/Img/header_bg.jpg');
+  background-size: cover;
+  height: 350px;
+  color: white;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 12vw;
+  object-fit: cover;
+}
+
+.form-control-height{
+  height: 5rem !important; 
+}
+
+.cut-title, .cut-text {
+  display: -webkit-box !important; 
+  -webkit-box-orient: vertical !important; 
+  overflow: hidden !important; 
+  text-overflow: ellipsis !important;
+}
+
+.cut-title { 
+  -webkit-line-clamp: 2 !important;
+  color: black;
+}
+
+.cut-text { 
+  -webkit-line-clamp: 3 !important; 
+}
+
+.spinner-border {
+  display: none;
+}
+
+.spinner-grow {
+  display: none;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  color: inherit;
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
+}
