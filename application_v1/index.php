@@ -216,8 +216,10 @@
 								onKeyUp="if (event.keyCode === 13) { saveQuery(document.getElementById('searchBox').value);
 								loadPhp('controllers/rss_search.php'); }" />
 							<button class="btn btn-primary" id="button-search" type="button"
-								onclick="saveQuery(document.getElementById('searchBox').value);
-								loadPhp('controllers/rss_search.php');">Buscar</button>
+								onclick="if (document.getElementById('searchBox').value !== '') {
+									saveQuery(document.getElementById('searchBox').value);
+									loadPhp('controllers/rss_search.php');
+								}">Buscar</button>
 						</div>
 					</div>
 				</div>
