@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es-MX">
-
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -12,152 +11,13 @@
 	<!-- Core theme CSS (includes Bootstrap)-->
 	<link href="css/styles.css" rel="stylesheet" />
 	<link href="css/styles_front.css" rel="stylesheet" />
-	<script type="text/javascript">
-		let query = "";
-		const loadPhp = (url) => {
-			// Se instancia un objeto del tipo XMLHttpRequest:
-			const xmlhttp = new XMLHttpRequest();
-
-			// Parámetros de la petición:
-			const method = "POST";
-			const async = true;
-
-			// Se inicializa la petición al servidor:
-			xmlhttp.open(method, url, async);
-			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-			// Se ejecuta cuando la propiedad readyState se modifica:
-			xmlhttp.onreadystatechange = () => {
-				if (
-					xmlhttp.readyState === XMLHttpRequest.DONE &&
-					xmlhttp.status === 200
-				) {
-					// Se valida que se haya obtenido una respuesta y el código HTTP sea 200 'OK':
-					document.getElementById("container").innerHTML = xmlhttp.responseText;
-				}
-			};
-
-			// Se ejecuta cuando se recibe la petición hecha al servidor:
-			xmlhttp.onload = () => {
-				if (xmlhttp.status >= 400) {
-					console.error(
-						`Error ${xmlhttp.status}`
-					);
-					document.getElementById(
-						"container"
-					).innerHTML = `<h1 align="center">ERROR ${xmlhttp.status}</h1>`;
-				}
-			};
-
-			// Se envía la petición al servidor:
-			xmlhttp.send(`searchtext=${document.getElementById('searchBox').value}`);
-		};
-
-		const saveQuery = (query) => {
-			window.query = query;
-		};
-
-		function searchByCategories() {
-			if(!window.query){
-				window.query = "";
-			}
-			let inputTextSearch = window.query;
-			let selectedItem = document.getElementById("formSelect").value;
-			const xmlhttp = new XMLHttpRequest();
-
-			xmlhttp.onreadystatechange = () => {
-				if (
-					xmlhttp.readyState === XMLHttpRequest.DONE &&
-					xmlhttp.status === 200
-				) {
-					// Se valida que se haya obtenido una respuesta y el código HTTP sea 200 'OK':
-					document.getElementById("container").innerHTML = xmlhttp.responseText;
-				}
-			};
-
-			// Se ejecuta cuando se recibe la petición hecha al servidor:
-			xmlhttp.onload = () => {
-				if (xmlhttp.status >= 400) {
-					console.error(
-						`Error ${xmlhttp.status}`
-					);
-					document.getElementById(
-						"container"
-					).innerHTML = `<h1 align="center">ERROR ${xmlhttp.status}</h1>`;
-				}
-			};
-			xmlhttp.open("GET", "controllers/rss_categories.php?searchBox=" + inputTextSearch + "&formSelect=" + selectedItem, true);
-			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xmlhttp.send();
-	}
-
-	function searchCategory(category) {
-		console.log(category);
-		const xmlhttp = new XMLHttpRequest();
-		xmlhttp.onreadystatechange = () => {
-			if (
-				xmlhttp.readyState === XMLHttpRequest.DONE &&
-				xmlhttp.status === 200
-			) {
-				// Se valida que se haya obtenido una respuesta y el código HTTP sea 200 'OK':
-				document.getElementById("container").innerHTML = xmlhttp.responseText;
-			}
-		};
-		// Se ejecuta cuando se recibe la petición hecha al servidor:
-		xmlhttp.onload = () => {
-			if (xmlhttp.status >= 400) {
-				console.error(
-					`Error ${xmlhttp.status}`
-				);
-				document.getElementById(
-					"container"
-				).innerHTML = `<h1 align="center">ERROR ${xmlhttp.status}</h1>`;
-			}
-		};
-		xmlhttp.open("GET", "controllers/rss_search_category.php?category=" + category, true);
-		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xmlhttp.send();
-	}
-
-	function getCategories() {
-		let inputTextSearch = document.getElementById("searchBox").value;
-		let selectedItem = document.getElementById("formSelect").value;
-		const xmlhttp = new XMLHttpRequest();
-
-		xmlhttp.onreadystatechange = () => {
-			if (
-				xmlhttp.readyState === XMLHttpRequest.DONE &&
-				xmlhttp.status === 200
-			) {
-				// Se valida que se haya obtenido una respuesta y el código HTTP sea 200 'OK':
-				document.getElementById("link-categories").innerHTML = xmlhttp.responseText;
-			}
-		};
-
-		// Se ejecuta cuando se recibe la petición hecha al servidor:
-		xmlhttp.onload = () => {
-			if (xmlhttp.status >= 400) {
-				console.error(
-					`Error ${xmlhttp.status}`
-				);
-				document.getElementById(
-					"link-categories"
-				).innerHTML = `<h1 align="center">ERROR ${xmlhttp.status}</h1>`;
-			}
-		};
-
-		xmlhttp.open("GET", "controllers/rss_get_categories.php", true);
-		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xmlhttp.send();
-	}
-	</script>
 </head>
 
-<body>
+<body onload="loadPhp('controllers/rss_reader.php'); getCategories();">
 	<!-- Responsive navbar-->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container">
-			<a class="navbar-brand" href="index.php" onclick="window.query='';">Lector de noticias RSS</a>
+			<a class="navbar-brand" href="index.php" onclick="query='';">Lector de noticias RSS</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
 				aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -185,10 +45,10 @@
 							noticias favorito.
 						</p>
 						<div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-							<a class="btn btn-primary btn-lg px-4 me-sm-3"
-								onclick="window.query=''; loadPhp('controllers/rss_reader.php')">Mostrar</a>
-							<a class="btn btn-outline-light btn-lg px-4"
-								onclick="window.query=''; loadPhp('controllers/rss_update.php'); loadPhp('controllers/rss_reader.php');
+							<a class="btn btn-primary btn-lg px-4 me-sm-3" aria-label="Mostrar"
+								onclick="query=''; loadPhp('controllers/rss_reader.php');">Mostrar</a>
+							<a class="btn btn-outline-light btn-lg px-4" aria-label="Actualizar"
+								onclick="query=''; loadPhp('controllers/rss_update.php'); loadPhp('controllers/rss_reader.php');
 								getCategories();">Actualizar</a>
 						</div>
 					</div>
@@ -215,7 +75,7 @@
 								aria-label="Busca noticias y más..." aria-describedby="button-search"
 								onKeyUp="if (event.keyCode === 13) { saveQuery(document.getElementById('searchBox').value);
 								loadPhp('controllers/rss_search.php'); }" />
-							<button class="btn btn-primary" id="button-search" type="button"
+							<button class="btn btn-primary" id="button-search" type="button" aria-label="Botón buscar"
 								onclick="if (document.getElementById('searchBox').value !== '') {
 									saveQuery(document.getElementById('searchBox').value);
 									loadPhp('controllers/rss_search.php');
@@ -227,14 +87,14 @@
 				<div class="card mb-4">
 					<div class="card-header">Ordenar Por:</div>
 					<div class="card-body">
-						<select id="formSelect" class="form-select" onchange="searchByCategories()"
-							aria-label="Default select">
-							<option value="1">Mas reciente</option>
+						<select id="sortSelect" class="form-select" onchange="sortBy()"
+							aria-label="Selector de tipos de ordenamiento">
+							<option value="1">Más reciente</option>
 							<option value="2">Título</option>
 							<option value="3">Descripción</option>
 							<option value="4">Menos reciente</option>
 						</select>
-						<h6 class="m-3">Categorias:</h6>
+						<h6 class="m-3">Categorías:</h6>
 						<div class="row" id="link-categories"></div>
 					</div>
 				</div>
@@ -247,9 +107,7 @@
 			<p class="m-0 text-center text-white">Optimización de Aplicaciones Web 2023.</p>
 		</div>
 	</footer>
+	<!-- Scripts -->
+	<script src="js/script.js"></script>
 </body>
-<script>
-	loadPhp('controllers/rss_reader.php');
-	getCategories();
-</script>
 </html>
