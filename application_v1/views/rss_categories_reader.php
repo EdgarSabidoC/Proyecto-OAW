@@ -5,14 +5,15 @@
 		die;
 	}
 	$i = 0;
-
+	$lastCategory = sizeof($arrayCategories);
+	$mid = $lastCategory/2;
 	foreach ($arrayCategories as $category) {
 		if ($i === 0) {
 			echo "<div class='col-sm-6'>";
 			echo "<ul class='list-unstyled mb-0'>";
 		}
 
-		if ($i === 3) {
+		if ($i === $mid) {
 			echo "</ul>";
 			echo "</div>";
 			echo "<div class='col-sm-6'>";
@@ -20,16 +21,16 @@
 		}
 
 		if ($category !== '') {
-			echo "<li onclick='searchCategory(\"{$category}\");'><a href='#!'>{$category}</a></li>";
+			echo "<li id='{$category}' onclick='searchCategory(\"{$category}\");'><a href='#!'>{$category}</a></li>";
 		}
 
-		if ($i === 5) {
+		if ($i === $lastCategory-1) {
 			echo "</ul>";
 			echo "</div>";
 		}
 
 		$i++;
-		if ($i === 6) {
+		if ($i === $lastCategory) {
 			break;
 		}
 	}

@@ -42,7 +42,8 @@
 							<li>La aplicación colecta las noticias y las almacena en una base de datos.</li>
 							<li>Proceso de actualización de las noticias activado por el usuario.</li>
 							<li>Las noticias presentan su fecha, título, URL, descripción y categorías.</li>
-							<li>La página principal enlista las noticias ordenadas por fecha. El usuario puede ordenarlas por cualquier campo.</li>
+							<li>La página principal enlista las noticias ordenadas por fecha.
+								El usuario puede ordenarlas por cualquier campo.</li>
 							<li>Permite buscar noticias que coincidan con el texto proporcionado.</li>
 						</ul>
 					</div>
