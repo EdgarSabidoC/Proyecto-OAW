@@ -31,9 +31,9 @@ class rssReaderModel
 		return $this->items;
 	}
 
-	// Buscar las noticias/artículos de la DB:
-	public function search_items_category($text) {
-		$sql = "SELECT * FROM feed WHERE categories LIKE '%" . $text . "%';";
+	// Buscar las noticias/artículos de la DB de una categoría:
+	public function search_items_by_category($category) {
+		$sql = "SELECT * FROM feed WHERE categories LIKE '%" . $category . "%';";
 		$query = $this->db->query($sql);
 		while ($rows = $query->fetch_assoc()) {
 			$this->items[] = $rows;
@@ -41,11 +41,19 @@ class rssReaderModel
 		return $this->items;
 	}
 
-	public function search_items_by_categories($text, $selectOption) {
-		if (!$text){
-			$sql = "SELECT * FROM feed " . $selectOption . ";";
+	public function search_items_and_sort($text, $selectOption, $category) {
+		$sql = '';
+		if (!$text && !$category) {
+			$sql = "SELECT * FROM feed ";
 		} else {
-			$sql = "SELECT * FROM feed WHERE (title LIKE '%" . $text . "%' OR description LIKE '%" . $text . "%') " . $selectOption . ";";
+			$sql = "SELECT * FROM feed WHERE (title LIKE '%" . $text . "%' OR
+			description LIKE '%" . $text . "%') ";
+		}
+
+		if ($category && $category !== '') {
+			$sql = $sql . 'AND categories LIKE ' . "'%{$category}%'" . $selectOption . ';';
+		} else {
+			$sql = $sql . $selectOption . ';';
 		}
 		$query = $this->db->query($sql);
 		while ($rows = $query->fetch_assoc()) {
@@ -66,7 +74,8 @@ class rssReaderModel
 	// Almacena en la BD los items:
 	public function set_item($title, $date, $description, $permalink, $categories, $image) {
 		$sql = "INSERT INTO feed (title, date, description, permalink, categories, image)
-							VALUES ('" . $title . "', '" . $date . "', '" . $description . "', '" . $permalink . "', '" . $categories . "', '" . $image . "')";
+							VALUES ('" . $title . "', '" . $date . "', '" . $description . "', '" .
+							$permalink . "', '" . $categories . "', '" . $image . "')";
 		if ($this->db->query($sql)) {
 			return true;
 		}

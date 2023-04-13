@@ -1,29 +1,33 @@
 <?php
-// Aquí se desarrolla la lógica para guardar los artículos del RSS en la base de datos.
-if ($_GET['searchBox'] !== '' && $_GET['formSelect'] !== '') {
+if ($_GET['searchBox'] !== '' && $_GET['sortSelect'] !== '') {
 	$text = $_GET['searchBox'];
-	$selectOption = $_GET['formSelect'];
-} elseif($_GET['formSelect'] !== ''){
+	$selectOption = $_GET['sortSelect'];
+} elseif ($_GET['sortSelect'] !== '') {
 	$text = '';
-	$selectOption = $_GET['formSelect'];
+	$selectOption = $_GET['sortSelect'];
 } else {
 	die;
+}
+
+$category = '';
+if ($_GET['category']) {
+	$category = $_GET['category'];
 }
 
 //se valida que tipo de opccion selecciono el usuario
 if ($selectOption == 1) {
 	$selectOption = "ORDER BY date DESC";
-} else if ($selectOption == 2) {
+} elseif ($selectOption == 2) {
 	$selectOption = "ORDER BY title ASC";
-} else if ($selectOption == 3) {
+} elseif ($selectOption == 3) {
 	$selectOption = "ORDER BY description ASC";
-} else if ($selectOption == 4) {
+} elseif ($selectOption == 4) {
 	$selectOption = "ORDER BY date ASC";
 }
 // Se obtienen los datos del modelo:
 require_once("../models/rssReader_model.php");
 $feed = new rssReaderModel();
-$items = $feed->search_items_by_categories($text, $selectOption);
+$items = $feed->search_items_and_sort($text, $selectOption, $category);
 unset($feed);
 
 if (!$items) {
