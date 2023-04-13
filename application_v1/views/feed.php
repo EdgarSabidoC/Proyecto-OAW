@@ -96,11 +96,11 @@
 							<p class="lead text-center fw-normal mb-4">
 								Añade tus portales favoritos de información para estar siempre informado en esta sección
 							</p>
-							<ul class="lead fw-normal mb-4">
-								<li>Ingresa la URL del Feed que deseas añadir a la base de datos en la caja de texto</li>
-								<li>Guarda los Feeds que hayas ingresado con el boton de guardado y disfruta de estar informado</li>
-								<li>Si ya no te interesan más tus Feeds puedes borrarlos con el boton de borrado</li>
-							</ul>
+							<ol class="lead fw-normal mb-4">
+								<li>Ingresa la URL del Feed que deseas añadir a la base de datos en la caja de texto.</li>
+								<li>Guarda los Feeds que hayas ingresado con el botón de guardado y disfruta de estar informado.</li>
+								<li>Si ya no te interesan más tus Feeds pueden ser borrados con el botón de "Borrar".</li>
+							</ol>
 						</div>
 					</div>
 				</div>
