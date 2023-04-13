@@ -14,7 +14,8 @@
 	<link href="css/styles_front.css" rel="stylesheet" />
 	<script type="text/javascript">
 		let query = "";
-		const loadPhp = (url) => {
+		let category = "";
+		function loadPhp (url) {
 			// Se instancia un objeto del tipo XMLHttpRequest:
 			const xmlhttp = new XMLHttpRequest();
 
@@ -53,16 +54,21 @@
 			xmlhttp.send(`searchtext=${document.getElementById('searchBox').value}`);
 		};
 
-		const saveQuery = (query) => {
+		function saveQuery(query) {
 			window.query = query;
+			window.category = "";
 		};
 
-		function searchByCategories() {
+		function sortBy() {
 			if(!window.query){
 				window.query = "";
 			}
+			if (!window.category) {
+				window.category = "";
+			}
 			let inputTextSearch = window.query;
-			let selectedItem = document.getElementById("formSelect").value;
+			let selectedItem = document.getElementById("sortSelect").value;
+			let selectedCategory = window.category;
 			const xmlhttp = new XMLHttpRequest();
 
 			xmlhttp.onreadystatechange = () => {
@@ -86,14 +92,15 @@
 					).innerHTML = `<h1 align="center">ERROR ${xmlhttp.status}</h1>`;
 				}
 			};
-			xmlhttp.open("GET", "controllers/rss_categories.php?searchBox=" + inputTextSearch + "&formSelect=" + selectedItem, true);
+			xmlhttp.open("GET", "controllers/rss_sort.php?searchBox=" + inputTextSearch
+			+ "&sortSelect=" + selectedItem + "&category=" + selectedCategory, true);
 			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xmlhttp.send();
 	}
 
-	function searchCategory(category) {
-		console.log(category);
+	function searchCategory(categoryString) {
 		const xmlhttp = new XMLHttpRequest();
+		window.category = categoryString;
 		xmlhttp.onreadystatechange = () => {
 			if (
 				xmlhttp.readyState === XMLHttpRequest.DONE &&
@@ -114,14 +121,14 @@
 				).innerHTML = `<h1 align="center">ERROR ${xmlhttp.status}</h1>`;
 			}
 		};
-		xmlhttp.open("GET", "controllers/rss_search_category.php?category=" + category, true);
+		xmlhttp.open("GET", "controllers/rss_search_category.php?category=" + categoryString, true);
 		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xmlhttp.send();
 	}
 
 	function getCategories() {
 		let inputTextSearch = document.getElementById("searchBox").value;
-		let selectedItem = document.getElementById("formSelect").value;
+		let selectedItem = document.getElementById("sortSelect").value;
 		const xmlhttp = new XMLHttpRequest();
 
 		xmlhttp.onreadystatechange = () => {
@@ -185,9 +192,9 @@
 							noticias favorito.
 						</p>
 						<div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-							<a class="btn btn-primary btn-lg px-4 me-sm-3"
-								onclick="window.query=''; loadPhp('controllers/rss_reader.php')">Mostrar</a>
-							<a class="btn btn-outline-light btn-lg px-4"
+							<a class="btn btn-primary btn-lg px-4 me-sm-3" aria-label="Mostrar"
+								onclick="window.query=''; loadPhp('controllers/rss_reader.php');">Mostrar</a>
+							<a class="btn btn-outline-light btn-lg px-4" aria-label="Actualizar"
 								onclick="window.query=''; loadPhp('controllers/rss_update.php'); loadPhp('controllers/rss_reader.php');
 								getCategories();">Actualizar</a>
 						</div>
@@ -215,7 +222,7 @@
 								aria-label="Busca noticias y más..." aria-describedby="button-search"
 								onKeyUp="if (event.keyCode === 13) { saveQuery(document.getElementById('searchBox').value);
 								loadPhp('controllers/rss_search.php'); }" />
-							<button class="btn btn-primary" id="button-search" type="button"
+							<button class="btn btn-primary" id="button-search" type="button" aria-label="Botón buscar"
 								onclick="if (document.getElementById('searchBox').value !== '') {
 									saveQuery(document.getElementById('searchBox').value);
 									loadPhp('controllers/rss_search.php');
@@ -227,14 +234,14 @@
 				<div class="card mb-4">
 					<div class="card-header">Ordenar Por:</div>
 					<div class="card-body">
-						<select id="formSelect" class="form-select" onchange="searchByCategories()"
-							aria-label="Default select">
-							<option value="1">Mas reciente</option>
+						<select id="sortSelect" class="form-select" onchange="sortBy()"
+							aria-label="Selector de tipos de ordenamiento">
+							<option value="1">Más reciente</option>
 							<option value="2">Título</option>
 							<option value="3">Descripción</option>
 							<option value="4">Menos reciente</option>
 						</select>
-						<h6 class="m-3">Categorias:</h6>
+						<h6 class="m-3">Categorías:</h6>
 						<div class="row" id="link-categories"></div>
 					</div>
 				</div>
