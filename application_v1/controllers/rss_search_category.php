@@ -1,11 +1,15 @@
 <?php
+	if ($_GET['category'] !== '') {
 	// Se obtiene el parámetro de la categoría:
 	$parameter = $_GET['category'];
+} else {
+	die;
+}
 
 	// Se obtienen los datos del modelo:
 	require_once("../models/rssReader_model.php");
 	$feed = new rssReaderModel();
-	$items = $feed->search_items_category($parameter);
+	$items = $feed->search_items_by_category($parameter);
 	unset($feed);
 
 	if (!$items) {
