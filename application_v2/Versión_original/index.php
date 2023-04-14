@@ -27,7 +27,6 @@
 			</div>
 		</div>
 	</nav>
-	<!-- Header-->
 	<header class="bg-dark py-5">
 		<div class="container px-5">
 			<div class="row gx-5 align-items-center justify-content-center">
@@ -52,17 +51,12 @@
 			</div>
 		</div>
 	</header>
-	<!-- Page content-->
 	<div class="container my-5">
 		<div class="row">
-			<!-- Blog entries-->
 			<div class="col-lg-8">
-				<!-- Nested row for non-featured blog posts-->
 				<div id="container" class="container row"></div>
 			</div>
-			<!-- Side widgets-->
 			<div class="col-lg-4">
-				<!-- Search widget-->
 				<div class="card mb-4">
 					<div class="card-header">Buscar</div>
 					<div class="card-body">
@@ -79,7 +73,6 @@
 						</div>
 					</div>
 				</div>
-				<!-- Categories widget-->
 				<div class="card mb-4">
 					<div class="card-header">Ordenar Por:</div>
 					<div class="card-body">
@@ -97,13 +90,11 @@
 			</div>
 		</div>
 	</div>
-	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">
 			<p class="m-0 text-center text-white">Optimización de Aplicaciones Web 2023.</p>
 		</div>
 	</footer>
-	<!-- Scripts -->
-	<script src="js/script.js"></script>
+	<script src="js/index.js"></script>
 </body>
 </html>

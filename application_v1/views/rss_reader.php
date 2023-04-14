@@ -11,7 +11,7 @@
 		$categories = $item['categories'];
 
 		if ($i == 0) {
-			if($item == $lastElement){
+			if ($item == $lastElement) {
 				echo "<div class='col-lg-6'>";
 			} else {
 				echo "<div class='card-group'>";

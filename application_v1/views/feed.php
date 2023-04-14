@@ -29,7 +29,7 @@
 				setTimeout(function() { hide('danger'); }, 7000);
 
 			}
-			const loadPhp = (url) => {
+			function loadFile (url) {
 				// Se instancia un objeto del tipo XMLHttpRequest:
 				const xmlhttp = new XMLHttpRequest();
 
@@ -42,18 +42,18 @@
 				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
 				// Se ejecuta cuando la propiedad readyState se modifica:
-				xmlhttp.onreadystatechange = () => {
+				xmlhttp.onreadystatechange = function () {
 					if (
 						xmlhttp.readyState === XMLHttpRequest.DONE &&
 						xmlhttp.status === 200
 					) {
 						// Se valida que se haya obtenido una respuesta y el código HTTP sea 200 'OK':
-						document.getElementById("container").innerHTML = xmlhttp.responseText;
+						successload("loading");
 					}
 				};
 
 				// Se ejecuta cuando se recibe la petición hecha al servidor:
-				xmlhttp.onload = () => {
+				xmlhttp.onload = function () {
 					if (xmlhttp.status >= 400) {
 						console.error(
 							`Error ${xmlhttp.status}`
@@ -61,13 +61,12 @@
 						document.getElementById(
 							"container"
 						).innerHTML = `<h1 align="center">ERROR ${xmlhttp.status}</h1>`;
-						failload('loading');
+						failload("loading");
 					}
 				};
 
 				// Se envía la petición al servidor:
 				xmlhttp.send(`feedurl=${document.getElementById('textArea').value}`);
-				successload('loading');
 			};
 		</script>
 	</head>
@@ -118,33 +117,36 @@
 					<div class="card-body">Ingresa la URL del Feed que deseas añadir.
 						<div class="input-group align-items-center justify-content-center">
 							<form class="col-12" method='POST'>
+								<!-- Blog entries -->
+								<div class="d-flex justify-content-center">
+									<div id="loading" class="spinner-border" role="status">
+										<span class="sr-only"></span>
+									</div>
+									<div id="success" class="spinner-grow text-success" role="status">
+										<span class="sr-only"></span>
+									</div>
+									<div id="danger" class="spinner-grow text-danger" role="status">
+										<span class="sr-only"></span>
+									</div>
+								</div>
 								<!-- Message input-->
 								<div class="form-floating m-3">
-									<textarea id="textArea" name="textArea" class="form-control form-control-height" type="text" placeholder="Ingresar Sitio..."></textarea>
+									<textarea id="textArea" name="textArea" class="form-control form-control-height"
+									type="text" placeholder="Ingresar Sitio..."></textarea>
 									<label for="Ingresar Sitio">Ingresar Sitios</label>
 								</div>
 								<!-- Submit Button-->
 								<div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-									<button class="btn btn-primary" id="button-delete" type="button" onclick="loadPhp('../controllers/rss_delete.php')">Borrar</button>
-									<button class="btn btn-primary" id="button-upload" type="button" onclick="loadPhp('../controllers/rss_upload.php'); show('loading');">Guardar</button>
+									<button class="btn btn-primary" id="button-delete" type="button"
+									onclick="loadFile('../controllers/rss_delete.php');
+									show('loading');">Borrar</button>
+									<button class="btn btn-primary" id="button-upload" type="button"
+									onclick="loadFile('../controllers/rss_upload.php');
+									show('loading');">Guardar</button>
 								</div>
 							</form>
 						</div>
 					</div>
-				</div>
-			</div>
-		</section>
-		<!-- Blog entries-->
-		<section class="py-5">
-			<div class="d-flex justify-content-center">
-				<div id="loading" class="spinner-border" role="status">
-					<span class="sr-only"></span>
-				</div>
-				<div id="success" class="spinner-grow text-success" role="status">
-					<span class="sr-only"></span>
-				</div>
-				<div id="danger" class="spinner-grow text-danger" role="status">
-					<span class="sr-only"></span>
 				</div>
 			</div>
 		</section>

@@ -15,7 +15,7 @@
 		$feed = new SimplePie();
 		$feed->set_feed_url($url);
 
-		// Caché:
+		// Se habilita la caché:
 		$feed->enable_cache(true);
 		$feed->set_cache_location('../cache');
 		$feed->set_cache_duration(1000);
