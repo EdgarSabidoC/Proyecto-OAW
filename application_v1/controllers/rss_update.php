@@ -14,3 +14,5 @@
 	foreach ($urls as $url) {
 		rss_storage(trim($url));
 	}
+
+	require_once("rss_reader.php");

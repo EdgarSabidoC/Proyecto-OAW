@@ -35,6 +35,9 @@
 				) {
 					// Se valida que se haya obtenido una respuesta y el código HTTP sea 200 'OK':
 					document.getElementById("container").innerHTML = xmlhttp.responseText;
+					if (url === "controllers/rss_update.php") {
+						getCategories();
+					}
 				}
 			};
 
@@ -193,10 +196,9 @@
 						</p>
 						<div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
 							<a class="btn btn-primary btn-lg px-4 me-sm-3" aria-label="Mostrar"
-								onclick="window.query=''; loadPhp('controllers/rss_reader.php');">Mostrar</a>
+								onclick="window.query=''; loadPhp('controllers/rss_reader.php'); getCategories();">Mostrar</a>
 							<a class="btn btn-outline-light btn-lg px-4" aria-label="Actualizar"
-								onclick="window.query=''; loadPhp('controllers/rss_update.php'); loadPhp('controllers/rss_reader.php');
-								getCategories();">Actualizar</a>
+								onclick="window.query=''; loadPhp('controllers/rss_update.php');">Actualizar</a>
 						</div>
 					</div>
 				</div>

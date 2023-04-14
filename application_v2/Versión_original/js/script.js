@@ -30,6 +30,10 @@ const loadPhp = async (url) => {
 			body: `searchtext=${document.getElementById("searchBox").value}`,
 		});
 		await updateContainer(response, "container");
+
+		if (url === "controllers/rss_update.php") {
+			getCategories();
+		}
 	} catch (error) {
 		console.error(error);
 	}

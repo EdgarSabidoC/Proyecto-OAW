@@ -6,15 +6,12 @@
 	<meta name="description" content="" />
 	<meta name="author" content="" />
 	<title>Lector de noticias RSS - Inicio</title>
-	<!-- Favicon-->
 	<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-	<!-- Core theme CSS (includes Bootstrap)-->
 	<link href="css/styles.css" rel="stylesheet" />
 	<link href="css/styles_front.css" rel="stylesheet" />
 </head>
 
 <body onload="loadPhp('controllers/rss_reader.php'); getCategories();">
-	<!-- Responsive navbar-->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container">
 			<a class="navbar-brand" href="index.php" onclick="query='';">Lector de noticias RSS</a>
@@ -46,10 +43,9 @@
 						</p>
 						<div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
 							<a class="btn btn-primary btn-lg px-4 me-sm-3" aria-label="Mostrar"
-								onclick="query=''; loadPhp('controllers/rss_reader.php');">Mostrar</a>
+								onclick="window.query=''; loadPhp('controllers/rss_reader.php'); getCategories();">Mostrar</a>
 							<a class="btn btn-outline-light btn-lg px-4" aria-label="Actualizar"
-								onclick="query=''; loadPhp('controllers/rss_update.php'); loadPhp('controllers/rss_reader.php');
-								getCategories();">Actualizar</a>
+								onclick="window.query=''; loadPhp('controllers/rss_update.php');">Actualizar</a>
 						</div>
 					</div>
 				</div>
