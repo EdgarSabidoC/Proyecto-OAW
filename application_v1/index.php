@@ -28,7 +28,7 @@
 			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
 			// Se ejecuta cuando la propiedad readyState se modifica:
-			xmlhttp.onreadystatechange = () => {
+			xmlhttp.onreadystatechange = function () {
 				if (
 					xmlhttp.readyState === XMLHttpRequest.DONE &&
 					xmlhttp.status === 200
@@ -42,7 +42,7 @@
 			};
 
 			// Se ejecuta cuando se recibe la petición hecha al servidor:
-			xmlhttp.onload = () => {
+			xmlhttp.onload = function () {
 				if (xmlhttp.status >= 400) {
 					console.error(
 						`Error ${xmlhttp.status}`
@@ -74,7 +74,7 @@
 			let selectedCategory = window.category;
 			const xmlhttp = new XMLHttpRequest();
 
-			xmlhttp.onreadystatechange = () => {
+			xmlhttp.onreadystatechange = function () {
 				if (
 					xmlhttp.readyState === XMLHttpRequest.DONE &&
 					xmlhttp.status === 200
@@ -85,7 +85,7 @@
 			};
 
 			// Se ejecuta cuando se recibe la petición hecha al servidor:
-			xmlhttp.onload = () => {
+			xmlhttp.onload = function () {
 				if (xmlhttp.status >= 400) {
 					console.error(
 						`Error ${xmlhttp.status}`
@@ -104,7 +104,7 @@
 	function searchCategory(categoryString) {
 		const xmlhttp = new XMLHttpRequest();
 		window.category = categoryString;
-		xmlhttp.onreadystatechange = () => {
+		xmlhttp.onreadystatechange = function () {
 			if (
 				xmlhttp.readyState === XMLHttpRequest.DONE &&
 				xmlhttp.status === 200
@@ -114,7 +114,7 @@
 			}
 		};
 		// Se ejecuta cuando se recibe la petición hecha al servidor:
-		xmlhttp.onload = () => {
+		xmlhttp.onload = function () {
 			if (xmlhttp.status >= 400) {
 				console.error(
 					`Error ${xmlhttp.status}`
@@ -134,7 +134,7 @@
 		let selectedItem = document.getElementById("sortSelect").value;
 		const xmlhttp = new XMLHttpRequest();
 
-		xmlhttp.onreadystatechange = () => {
+		xmlhttp.onreadystatechange = function () {
 			if (
 				xmlhttp.readyState === XMLHttpRequest.DONE &&
 				xmlhttp.status === 200
@@ -145,7 +145,7 @@
 		};
 
 		// Se ejecuta cuando se recibe la petición hecha al servidor:
-		xmlhttp.onload = () => {
+		xmlhttp.onload = function () {
 			if (xmlhttp.status >= 400) {
 				console.error(
 					`Error ${xmlhttp.status}`

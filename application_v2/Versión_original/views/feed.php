@@ -6,73 +6,11 @@
 		<meta name="description" content="" />
 		<meta name="author" content="" />
 		<title>Lector de noticias RSS - Feeds</title>
-		<!-- Favicon-->
 		<link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
-		<!-- Core theme CSS (includes Bootstrap)-->
 		<link href="../css/styles.css" rel="stylesheet" />
 		<link href="../css/styles_front.css" rel="stylesheet" />
-		<script type="text/javascript">
-			function show(id) {
-				document.getElementById(id).style.display = 'block';
-			}
-			function hide(id) {
-				document.getElementById(id).style.display = 'none';
-			}
-			function successload(id) {
-				setTimeout(function() { hide(id); }, 5000);
-				setTimeout(function() { show('success'); }, 5000);
-				setTimeout(function() { hide('success'); }, 7000);
-			}
-			function failload(id) {
-				setTimeout(function() { hide(id); }, 5000);
-				setTimeout(function() { show('danger'); }, 5000);
-				setTimeout(function() { hide('danger'); }, 7000);
-
-			}
-			const loadPhp = (url) => {
-				// Se instancia un objeto del tipo XMLHttpRequest:
-				const xmlhttp = new XMLHttpRequest();
-
-				// Parámetros de la petición:
-				const method = "POST";
-				const async = true;
-
-				// Se inicializa la petición al servidor:
-				xmlhttp.open(method, url, async);
-				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-				// Se ejecuta cuando la propiedad readyState se modifica:
-				xmlhttp.onreadystatechange = () => {
-					if (
-						xmlhttp.readyState === XMLHttpRequest.DONE &&
-						xmlhttp.status === 200
-					) {
-						// Se valida que se haya obtenido una respuesta y el código HTTP sea 200 'OK':
-						document.getElementById("container").innerHTML = xmlhttp.responseText;
-					}
-				};
-
-				// Se ejecuta cuando se recibe la petición hecha al servidor:
-				xmlhttp.onload = () => {
-					if (xmlhttp.status >= 400) {
-						console.error(
-							`Error ${xmlhttp.status}`
-						);
-						document.getElementById(
-							"container"
-						).innerHTML = `<h1 align="center">ERROR ${xmlhttp.status}</h1>`;
-						failload('loading');
-					}
-				};
-
-				// Se envía la petición al servidor:
-				xmlhttp.send(`feedurl=${document.getElementById('textArea').value}`);
-				successload('loading');
-			};
-		</script>
 	</head>
 	<body>
-		<!-- Responsive navbar-->
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 				<div class="container">
 						<a class="navbar-brand" href="../index.php">Lector de noticias RSS</a>
@@ -88,7 +26,6 @@
 						</div>
 				</div>
 		</nav>
-		<!-- Header-->
 		<header class="py-5">
 			<div class="container px-5">
 				<div class="row justify-content-center">
@@ -113,20 +50,31 @@
 				<div class="text-center">
 					<h2 class="fw-bolder">Añadir Feeds</h2>
 				</div>
-				<!-- Side widget-->
 				<div class="card mb-4">
 					<div class="card-body">Ingresa la URL del Feed que deseas añadir.
 						<div class="input-group align-items-center justify-content-center">
 							<form class="col-12" method='POST'>
-								<!-- Message input-->
+								<div class="d-flex justify-content-center">
+									<div id="loading" class="spinner-border" role="status">
+										<span class="sr-only"></span>
+									</div>
+									<div id="success" class="spinner-grow text-success" role="status">
+										<span class="sr-only"></span>
+									</div>
+									<div id="danger" class="spinner-grow text-danger" role="status">
+										<span class="sr-only"></span>
+									</div>
+								</div>
 								<div class="form-floating m-3">
-									<textarea id="textArea" name="textArea" class="form-control form-control-height" type="text" placeholder="Ingresar Sitio..."></textarea>
+									<textarea id="textArea" name="textArea" class="form-control form-control-height"
+									type="text" placeholder="Ingresar Sitio..."></textarea>
 									<label for="Ingresar Sitio">Ingresar Sitios</label>
 								</div>
-								<!-- Submit Button-->
 								<div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-									<button class="btn btn-primary" id="button-delete" type="button" onclick="loadPhp('../controllers/rss_delete.php')">Borrar</button>
-									<button class="btn btn-primary" id="button-upload" type="button" onclick="loadPhp('../controllers/rss_upload.php'); show('loading');">Guardar</button>
+									<button class="btn btn-primary" id="button-delete" type="button"
+									onclick="loadFile('../controllers/rss_delete.php'); show('loading');">Borrar</button>
+									<button class="btn btn-primary" id="button-upload" type="button"
+									onclick="loadFile('../controllers/rss_upload.php'); show('loading');">Guardar</button>
 								</div>
 							</form>
 						</div>
@@ -134,23 +82,9 @@
 				</div>
 			</div>
 		</section>
-		<!-- Blog entries-->
-		<section class="py-5">
-			<div class="d-flex justify-content-center">
-				<div id="loading" class="spinner-border" role="status">
-					<span class="sr-only"></span>
-				</div>
-				<div id="success" class="spinner-grow text-success" role="status">
-					<span class="sr-only"></span>
-				</div>
-				<div id="danger" class="spinner-grow text-danger" role="status">
-					<span class="sr-only"></span>
-				</div>
-			</div>
-		</section>
-		<!-- Footer-->
 		<footer class="py-5 bg-dark">
 				<div class="container"><p class="m-0 text-center text-white">Optimización de Aplicaciones Web 2023.</p></div>
 		</footer>
+	<script src="../js/feed.js"></script>
 	</body>
 </html>

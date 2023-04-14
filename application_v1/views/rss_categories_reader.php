@@ -1,5 +1,5 @@
 <?php
-	//imprimmos 6 diferentes categorias tomando solo la primera categoria de cada item sin repetir
+	//Se imprimen las diferentes categorias tomando solo la primera categoria de cada item sin repetir:
 	if (!$arrayCategories) {
 		echo "<h6>Sin categorías...</h6>";
 		die;
