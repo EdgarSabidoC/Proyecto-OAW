@@ -6,7 +6,7 @@
 	}
 	$i = 0;
 	$lastCategory = sizeof($arrayCategories);
-	$mid = $lastCategory/2;
+	$mid = intval(ceil(($lastCategory)/2));
 	foreach ($arrayCategories as $category) {
 		if ($i === 0) {
 			echo "<div class='col-sm-6'>";

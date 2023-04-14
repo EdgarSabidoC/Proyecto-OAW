@@ -42,22 +42,20 @@
 					$categories = $item->get_categories();
 					$categories = $categories[0]->get_label();
 				}
-	
 				if ($item->get_enclosure()->get_link()) {
 					$image = $item->get_enclosure()->get_link();
+				} else {
+					$image = 'https://dummyimage.com/700x350/dee2e6/6c757d.jpg';
+					// $query = str_replace(' ', '+', trim(clean_string($title)));
+					// $search = file_get_contents('https://www.googleapis.com/customsearch/v1?cx=6309d895094ec42e8&q='
+					// .$query.'&searchType=image&key=');
+					// $decodedJson = json_decode($search, true);
+					// 	if ($decodedJson) {
+					// 		$image = $decodedJson['items'][0]['link'];
+					// 	} else {
+					// 		$image = 'https://dummyimage.com/700x350/dee2e6/6c757d.jpg';
+					// 	}
 				}
-				else {
-					$query = str_replace(' ', '+', trim(clean_string($title)));
-					$search = file_get_contents('https://www.googleapis.com/customsearch/v1?cx=6309d895094ec42e8&q='.$query.'&searchType=image&key=');
-					$decoded_json = json_decode($search, true);
-					if($decoded_json){
-						$image = $decoded_json['items'][0]['link'];
-					}
-					else{
-						$image = 'https://dummyimage.com/700x350/dee2e6/6c757d.jpg';
-					}
-				}
-				
 				$rssModel->set_item($title, $date, $description, $permalink, $categories, $image);
 			}
 
