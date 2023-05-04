@@ -1,3 +1,6 @@
+<?php
+	header('Cache-Control: public, max-age=3600, must-revalidate');
+?>
 <!DOCTYPE html>
 <html lang="es-MX">
 	<head>
