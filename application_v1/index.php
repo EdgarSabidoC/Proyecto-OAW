@@ -64,6 +64,10 @@
 			window.category = "";
 		};
 
+		function resetQuery () {
+			window.query = "";
+		}
+
 		function sortBy() {
 			if(!window.query){
 				window.query = "";
@@ -199,9 +203,9 @@
 						</p>
 						<div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
 							<a class="btn btn-primary btn-lg px-4 me-sm-3" aria-label="Mostrar"
-								onclick="window.query=''; loadPhp('controllers/rss_reader.php'); getCategories();">Mostrar</a>
+								onclick="loadPhp('controllers/rss_reader.php'); resetQuery(); getCategories();">Mostrar</a>
 							<a class="btn btn-outline-light btn-lg px-4" aria-label="Actualizar"
-								onclick="window.query=''; loadPhp('controllers/rss_update.php');">Actualizar</a>
+								onclick="loadPhp('controllers/rss_update.php'); resetQuery();">Actualizar</a>
 						</div>
 					</div>
 				</div>
