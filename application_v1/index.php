@@ -16,6 +16,8 @@
 		let query = "";
 		let category = "";
 		function loadPhp (url) {
+			// Se reinicia la categoría:
+			window.category = "";
 			// Se instancia un objeto del tipo XMLHttpRequest:
 			const xmlhttp = new XMLHttpRequest();
 
@@ -102,6 +104,7 @@
 	}
 
 	function searchCategory(categoryString) {
+		window.query = "";
 		const xmlhttp = new XMLHttpRequest();
 		window.category = categoryString;
 		xmlhttp.onreadystatechange = function () {
