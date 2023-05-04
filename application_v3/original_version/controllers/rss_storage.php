@@ -44,9 +44,11 @@
 				}
 
 				if ($item->get_enclosure()->get_link()) {
-					$image = $item->get_enclosure()->get_link();
+					include_once('../utils/convertToWebp.php'); // Se añade la función de conversión de imágenes.
+					$source = $item->get_enclosure()->get_link();
+					$image = convertToWebp($source, crc32($title), 80, 700, 350);
 				} else {
-					$image = 'https://dummyimage.com/700x350/dee2e6/6c757d.jpg';
+					$image = './assets/Img/dummy_700x350.webp';
 					// $query = str_replace(' ', '+', trim(clean_string($title)));
 					// $search = file_get_contents('https://www.googleapis.com/customsearch/v1?cx=6309d895094ec42e8&q='
 					// .$query.'&searchType=image&key=');
@@ -54,7 +56,7 @@
 					// 	if ($decodedJson) {
 					// 		$image = $decodedJson['items'][0]['link'];
 					// 	} else {
-					// 		$image = 'https://dummyimage.com/700x350/dee2e6/6c757d.jpg';
+					// 		$image = './assets/Img/dummy_700x350.webp';
 					// 	}
 				}
 				$rssModel->set_item($title, $date, $description, $permalink, $categories, $image);

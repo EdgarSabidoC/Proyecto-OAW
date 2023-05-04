@@ -3,12 +3,19 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<meta name="description" content="" />
-	<meta name="author" content="" />
+	<meta name="author" content="Edgar Sabido Cortés, Carlos A. Ruiz Domínguez,
+		Alexis Rosaldo Pacheco, José Alberto Polanco Cervera" />
+	<meta name="description" content="Lector Web de RSS feeds personalizable.
+		Recopila la información de los sitios web en un entorno virtual organizado
+		para que puedas seguir las noticias de tu blog o canal de noticias favorito.">
+	<meta name="theme-color" content="#0d6efd"/>
 	<title>Lector de noticias RSS - Inicio</title>
+	<link rel="canonical" href="http://localhost/Proyecto-OAW-develop/application_v3/original_version/index.php" />
 	<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+	<link rel="apple-touch-icon" href="assets/favicon.ico" />
 	<link href="css/styles.css" rel="stylesheet" />
 	<link href="css/styles_front.css" rel="stylesheet" />
+	<meta name="theme-color" content="#0d6efd" />
 </head>
 
 <body onload="loadPhp('controllers/rss_reader.php'); getCategories();">
