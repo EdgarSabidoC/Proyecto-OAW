@@ -17,7 +17,6 @@
 		<link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
 		<link href="../css/styles.css" rel="stylesheet" />
 		<link href="../css/styles_front.css" rel="stylesheet" />
-		<meta name="theme-color" content="#0d6efd" />
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
