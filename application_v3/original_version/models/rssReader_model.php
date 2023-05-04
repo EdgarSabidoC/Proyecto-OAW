@@ -1,12 +1,10 @@
 <?php
 include_once("../db/mariaDB.php");
-class rssReaderModel
-{
+class rssReaderModel {
 	private $db;
 	private $items;
 
-	public function __construct()
-	{
+	public function __construct() {
 		$this->db = MariaDBConnection::connect();
 		$this->items = array();
 	}
@@ -41,6 +39,7 @@ class rssReaderModel
 		return $this->items;
 	}
 
+	// Obtiene las noticias y las ordena:
 	public function search_items_and_sort($text, $selectOption, $category) {
 		$sql = '';
 		if (!$text && !$category) {
@@ -62,6 +61,7 @@ class rssReaderModel
 		return $this->items;
 	}
 
+	// Obtiene las categorías de las noticias:
 	public function get_categories() {
 		$sql = "SELECT categories FROM feed;";
 		$query = $this->db->query($sql);
