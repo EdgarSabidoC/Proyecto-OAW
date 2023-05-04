@@ -7,11 +7,11 @@
 
 	function rss_storage($url) {
 		// Instancia del modelo para almacenar los datos:
-		require_once("../models/rssReader_model.php");
+		include_once("../models/rssReader_model.php");
 		$rssModel = new rssReaderModel();
 
 		// Instanciación del feed:
-		require_once('../libraries/third-party/simplepie-1.8.0/SimplePie.compiled.php');
+		include_once('../libraries/third-party/simplepie-1.8.0/SimplePie.compiled.php');
 		$feed = new SimplePie();
 		$feed->set_feed_url($url);
 
