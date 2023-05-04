@@ -4,18 +4,17 @@
 <!DOCTYPE html>
 <html lang="es-MX">
 	<head>
-			<meta charset="utf-8" />
-			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-			<meta name="author" content="Edgar Sabido Cortés, Carlos A. Ruiz Domínguez,
-				Alexis Rosaldo Pacheco, José Alberto Polanco Cervera" />
-			<meta name="description" content="Sitio con información acerca de los autores del lector de noticias RSS.">
-			<meta name="theme-color" content="#0d6efd"/>
-			<title>Lector de noticias RSS - Acerca de</title>
-			<link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
-			<link rel="apple-touch-icon" href="../assets/favicon.ico" />
-			<link href="../css/styles.css" rel="stylesheet" />
-			<link href="../css/styles_front.css" rel="stylesheet" />
-			<meta name="theme-color" content="#0d6efd" />
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<meta name="author" content="Edgar Sabido Cortés, Carlos A. Ruiz Domínguez,
+			Alexis Rosaldo Pacheco, José Alberto Polanco Cervera" />
+		<meta name="description" content="Sitio con información acerca de los autores del lector de noticias RSS.">
+		<meta name="theme-color" content="#0d6efd"/>
+		<title>Lector de noticias RSS - Acerca de</title>
+		<link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+		<link rel="apple-touch-icon" href="../assets/favicon.ico" />
+		<link href="../css/styles.css" rel="stylesheet" />
+		<link href="../css/styles_front.css" rel="stylesheet" />
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
