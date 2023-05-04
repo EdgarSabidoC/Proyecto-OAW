@@ -1,13 +1,16 @@
 let query = "";
 let category = "";
+
 const saveQuery = (queryString) => {
 	query = queryString;
 	category = "";
 };
+
 const fetchOptions = {
 	method: "GET",
 	headers: { "Content-type": "application/x-www-form-urlencoded" },
 };
+
 const updateContainer = async (response, container) => {
 	if (response.ok) {
 		document.getElementById(container).innerHTML = await response.text();
@@ -18,8 +21,10 @@ const updateContainer = async (response, container) => {
 		).innerHTML = `<h1 align='center'>ERROR ${response.status}</h1>`;
 	}
 };
+
 const loadPhp = async (url) => {
 	try {
+		category = "";
 		const response = await fetch(url, {
 			...fetchOptions,
 			method: "POST",
@@ -33,6 +38,7 @@ const loadPhp = async (url) => {
 		console.error(error);
 	}
 };
+
 const sortBy = async () => {
 	if (!query) {
 		query = "";
@@ -51,8 +57,10 @@ const sortBy = async () => {
 		console.error(error);
 	}
 };
+
 const searchCategory = async (categoryString) => {
 	try {
+		query = "";
 		const response = await fetch(
 			`controllers/rss_search_category.php?category=${categoryString}`,
 			fetchOptions
@@ -63,6 +71,7 @@ const searchCategory = async (categoryString) => {
 		console.error(error);
 	}
 };
+
 const getCategories = async () => {
 	try {
 		const response = await fetch(
