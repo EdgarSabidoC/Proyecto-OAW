@@ -1,5 +1,5 @@
 <?php
-		require_once("../models/rssReader_model.php");
+		include_once("../models/rssReader_model.php");
 		$rssModel = new rssReaderModel();
 		$rssModel->delete_items();
 

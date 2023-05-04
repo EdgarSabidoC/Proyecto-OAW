@@ -1,5 +1,5 @@
 <?php
-require_once("../db/mariaDB.php");
+include_once("../db/mariaDB.php");
 class rssReaderModel
 {
 	private $db;

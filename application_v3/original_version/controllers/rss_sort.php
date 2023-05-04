@@ -25,7 +25,7 @@ if ($selectOption == 1) {
 	$selectOption = "ORDER BY date ASC";
 }
 // Se obtienen los datos del modelo:
-require_once("../models/rssReader_model.php");
+include_once("../models/rssReader_model.php");
 $feed = new rssReaderModel();
 $items = $feed->search_items_and_sort($text, $selectOption, $category);
 unset($feed);
@@ -36,5 +36,5 @@ if (!$items) {
 	die;
 } else {
 	// Si no hay un error se llama a la vista:
-	require_once('../views/rss_reader.php');
+	include_once('../views/rss_reader.php');
 }

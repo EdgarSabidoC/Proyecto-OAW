@@ -6,7 +6,7 @@
 	$text = $_POST['searchtext'];
 
 	// Se obtienen los datos del modelo:
-	require_once("../models/rssReader_model.php");
+	include_once("../models/rssReader_model.php");
 	$feed = new rssReaderModel();
 	$items = $feed->search_items($text);
 
@@ -16,5 +16,5 @@
 		die;
 	} else {
 		// Si no hay un error se llama a la vista:
-		require_once('../views/rss_reader.php');
+		include_once('../views/rss_reader.php');
 	}

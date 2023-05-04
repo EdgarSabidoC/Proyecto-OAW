@@ -1,6 +1,6 @@
 <?php
 // Se obtienen los datos del modelo:
-require_once("../models/rssReader_model.php");
+include_once("../models/rssReader_model.php");
 $feed = new rssReaderModel();
 $items = $feed->get_categories();
 unset($feed);
@@ -18,5 +18,5 @@ if (!$items) {
 	$arrayCategories = array_unique($arrayCategories);
 	sort($arrayCategories);
 	// Si no hay un error se llama a la vista:
-	require_once('../views/rss_categories_reader.php');
+	include_once('../views/rss_categories_reader.php');
 }
