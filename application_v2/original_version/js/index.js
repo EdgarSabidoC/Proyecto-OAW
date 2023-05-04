@@ -6,6 +6,10 @@ const saveQuery = (queryString) => {
 	category = "";
 };
 
+const resetQuery = () => {
+	query = "";
+};
+
 const fetchOptions = {
 	method: "GET",
 	headers: { "Content-type": "application/x-www-form-urlencoded" },
