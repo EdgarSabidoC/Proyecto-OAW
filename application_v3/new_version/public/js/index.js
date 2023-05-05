@@ -116,13 +116,13 @@ const searchCategory = (categoryString) => {
 		query = "";
 		tmpRssList.query = query;
 
+		category = categoryString.toLowerCase();
+
 		// Si no se ha cambiado la búsqueda:
 		if (category !== "" && category === tmpRssList.category) {
 			viewRssList();
 			return;
 		}
-
-		category = categoryString.toLowerCase();
 		let tmp = [];
 		tmpRssList.category = category;
 
