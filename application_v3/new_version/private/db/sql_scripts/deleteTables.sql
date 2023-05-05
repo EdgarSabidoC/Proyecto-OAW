@@ -1,0 +1,3 @@
+-- #BORRAR TABLAS SQL:
+
+DROP TABLE feed;
