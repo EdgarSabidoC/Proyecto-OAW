@@ -14,6 +14,7 @@
 	<link rel="apple-touch-icon" href="assets/favicon.ico" />
 	<link href="css/styles.css" rel="stylesheet" />
 	<link href="css/styles_front.css" rel="stylesheet" />
+	<link href="css/pagination.css" rel="stylesheet" />
 	<meta name="theme-color" content="#0d6efd" />
 </head>
 
@@ -60,7 +61,12 @@
 	<div class="container my-5">
 		<div class="row">
 			<div class="col-lg-8">
-				<div id="container" class="container row"></div>
+				<div id="container" class="container row">
+					<nav aria-label="Page navigation">
+						<div class="data-container"></div>
+						<div id="pagination-list" class="d-flex justify-content-center"></div>
+					</nav>
+				</div>
 			</div>
 			<div class="col-lg-4">
 				<div class="card mb-4">
@@ -101,6 +107,9 @@
 			<p class="m-0 text-center text-white">Optimización de Aplicaciones Web 2023.</p>
 		</div>
 	</footer>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/pagination.min.js"></script>
+	<script src="js/pagination.js"></script>
 	<script src="js/index.js"></script>
 </body>
 </html>
