@@ -18,6 +18,22 @@
 		// Obtiene el ancho y alto original de la imagen:
 		list($originalWidth, $originalHeight) = getimagesizefromstring($data);
 
+		// Si el alto es más grande que el ancho en la imagen original, se invierten:
+		if ($originalWidth < $originalHeight) {
+			$tmp = $originalWidth;
+			$originalWidth = $originalHeight;
+			$originalHeight = $tmp;
+		}
+
+		// Se verifica si las dimensiones originales son más pequeñas:
+		if ($width > $originalWidth) {
+			$width = $originalWidth;
+		}
+
+		if ($height > $originalHeight) {
+			$height = $originalHeight;
+		}
+
 		// Crea una nueva imagen con las dimensiones especificadas:
 		$newImage = imagecreatetruecolor($width, $height);
 

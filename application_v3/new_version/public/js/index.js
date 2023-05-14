@@ -19,11 +19,6 @@ const resetTmpRssList = () => {
 	tmpRssList.query = "";
 };
 
-const viewRssList = () => {
-	let list = tmpRssList.rssList;
-	list && list.length > 0 ? console.log(tmpRssList) : console.log(rssCacheList);
-};
-
 const sortList = (selectedItem) => {
 	let list = tmpRssList.rssList;
 	list = list.length > 0 ? tmpRssList.rssList : rssCacheList;
@@ -49,7 +44,6 @@ const sortBy = () => {
 	let selectedItem = document.getElementById("sortSelect").value;
 	try {
 		tmpRssList.rssList = sortList(selectedItem);
-		
 		feedPagination();
 	} catch (error) {
 		console.error(error);
@@ -75,7 +69,6 @@ const searchQuery = () => {
 
 		// Si no se ha cambiado la búsqueda:
 		if (query !== "" && query === tmpRssList.query) {
-			
 			feedPagination();
 			return;
 		}
@@ -122,7 +115,6 @@ const searchCategory = (categoryString) => {
 
 		// Si no se ha cambiado la búsqueda:
 		if (category !== "" && category === tmpRssList.category) {
-			
 			feedPagination();
 			return;
 		}
