@@ -6,3 +6,5 @@ node_modules/
 .prettierignore
 application_v3/new_version/public/cache/*.spc
 application_v3/new_version/public/cache/feedsImages/*.webp
+application_v3/minimized_version/public/cache/*.spc
+application_v3/minimized_version/public/cache/feedsImages/*.webp
