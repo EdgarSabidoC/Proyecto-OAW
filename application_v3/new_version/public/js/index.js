@@ -49,7 +49,8 @@ const sortBy = () => {
 	let selectedItem = document.getElementById("sortSelect").value;
 	try {
 		tmpRssList.rssList = sortList(selectedItem);
-		viewRssList();
+		
+		feedPagination();
 	} catch (error) {
 		console.error(error);
 	}
@@ -74,7 +75,8 @@ const searchQuery = () => {
 
 		// Si no se ha cambiado la búsqueda:
 		if (query !== "" && query === tmpRssList.query) {
-			viewRssList();
+			
+			feedPagination();
 			return;
 		}
 		let tmp = [];
@@ -120,7 +122,8 @@ const searchCategory = (categoryString) => {
 
 		// Si no se ha cambiado la búsqueda:
 		if (category !== "" && category === tmpRssList.category) {
-			viewRssList();
+			
+			feedPagination();
 			return;
 		}
 		let tmp = [];
@@ -158,14 +161,16 @@ const getRssList = async () => {
 		resetTmpRssList();
 		if (Array.isArray(rssCacheList) && rssCacheList.length > 0) {
 			getCategories(); // Se muestra el listado de categorías.
-			viewRssList(); // Se muestra la lista de rss.
+			 // Se muestra la lista de rss.
+			feedPagination();
 			return;
 		}
 		const response = await fetch("router/router.php?src=reader", fetchOptions);
 		rssCacheList = await response.json(); // Se almacena la lista de los rss.
 		if (Array.isArray(rssCacheList) && rssCacheList.length > 0) {
 			getCategories(); // Se muestra el listado de categorías.
-			viewRssList(); // Se muestra la lista de rss.
+			 // Se muestra la lista de rss.
+			feedPagination();
 		}
 	} catch (error) {
 		console.error(error);
@@ -179,7 +184,8 @@ const updateRssList = async () => {
 		rssCacheList = await response.json(); // Se almacena la lista de los rss.
 		if (Array.isArray(rssCacheList) && rssCacheList.length > 0) {
 			getCategories(); // Se muestra el listado de categorías.
-			viewRssList(); // Se muestra la lista de rss.
+			 // Se muestra la lista de rss.
+			feedPagination();
 		}
 	} catch (error) {
 		console.error(error);
